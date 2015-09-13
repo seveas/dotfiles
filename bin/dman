@@ -1,0 +1,48 @@
+#!/usr/bin/python3
+
+import csv
+import datetime
+import os
+import requests
+import sys
+import tempfile
+from whelk import shell
+
+distinfo = '/usr/share/distro-info/ubuntu.csv'
+
+def main():
+    if os.path.exists(distinfo):
+        codename = latest_supported_release()
+    else:
+        distro, codename = shell.lsb_release('-cis').stdout.splitlines()
+        if distro != 'Ubuntu':
+            codename = 'vivid'
+    page = get_manpage(codename, 'en', sys.argv[-1])
+    fd, path = tempfile.mkstemp(prefix = sys.argv[-1] + '.')
+    try:
+        os.write(fd, page)
+        argv = sys.argv[1:-1] + ['-l', path]
+        shell.man(*argv, redirect=False)
+    finally:
+        os.unlink(path)
+
+def latest_supported_release():
+    with open(distinfo) as fd:
+        releases = list(csv.DictReader(fd))
+    today = datetime.datetime.today().strftime('%Y-%m-%d')
+    for release in reversed(sorted(releases, key=lambda release: release['release'])):
+        if release['release'] < today:
+            return release['series']
+
+def get_manpage(codename, locale, name):
+    template = "http://manpages.ubuntu.com/manpages.gz/%(codename)s/%(locale)s/man%(section)s/%(name)s.%(section)s.gz"
+    for section in range(1,10):
+        url = template % locals()
+        resp = requests.get(url)
+        if resp.status_code == 200:
+            return resp.content
+    print("No manual entry for %s" % name, file=sys.stderr)
+    sys.exit(1)
+
+if __name__ == '__main__':
+    main()
