@@ -1,0 +1,74 @@
+#!/usr/bin/python
+
+from __future__ import print_function
+import dbus.mainloop.glib
+import ConfigParser
+import os
+import socket
+import subprocess
+import sys
+import whelk
+import NetworkManager
+
+shell = whelk.Shell(redirect=False)
+
+def die(msg):
+    print(msg, file=sys.stderr)
+    sys.exit(1)
+
+def main():
+    config = ConfigParser.ConfigParser()
+    config.read(os.path.join(os.path.expanduser('~'), '.config', 'b_tunnel'))
+    # Check if the SSH tunnel is up. Connect if it isn't
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(3)
+        sock.connect(('localhost', config.getint('vpn', 'localport')))
+    except socket.error:
+        ssh_connect(config.get('ssh', 'command'), config.get('ssh', 'exthost'), config.get('ssh', 'inthost'),
+                    (config.getint('vpn', 'localport'), config.get('vpn', 'host'), config.getint('vpn', 'port'))) 
+    # And poke NetworkManager to connect the VPN
+    vpn_connect(config.get('vpn', 'name'))
+
+def ssh_connect(command, exthost, inthost, forward):
+    print("Connecting to %s" % exthost)
+    if not shell[command](exthost, ':'):
+        die("SSH to %s failed" % exthost)
+    print("Connecting to %s and creating tunnel" % inthost)
+    proxy = '-P%s' % exthost
+    tunnel = '-L' + ':'.join([str(x) for x in forward])
+    if not shell[command](proxy, tunnel, '-f', '-n', '-N', inthost):
+        die("Connecting to %s failed" % inthost)
+
+def vpn_connect(name):
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+
+    for conn in NetworkManager.Settings.ListConnections():
+        settings = conn.GetSettings()
+        if 'vpn' in settings and settings['connection']['id'] == name:
+            vpn = conn
+            uuid = settings['connection']['uuid']
+            break
+    else:
+        die("VPN with name %s not found" % name)
+
+    # Bail out if a vpn is active
+    for conn in NetworkManager.NetworkManager.ActiveConnections:
+        settings = conn.Connection.GetSettings()
+        if 'vpn' in settings:
+            if settings['connection']['id'] == name:
+                die("VPN %s is already active" % name)
+            die("Another VPN is active")
+
+    # Activate VPN
+    for dev in NetworkManager.NetworkManager.GetDevices():
+        if dev.State == NetworkManager.NM_DEVICE_STATE_ACTIVATED and dev.Managed:
+            break
+    else:
+        die("No active, managed device found")
+
+    print("Activating VPN")
+    NetworkManager.NetworkManager.ActivateConnection(vpn, dev, "/")
+
+if __name__ == '__main__':
+    main()
