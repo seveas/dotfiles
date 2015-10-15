@@ -1,0 +1,20 @@
+[user]
+	name = Dennis Kaarsemaker
+	email = dennis@kaarsemaker.net
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
+	pager = less -R$LESS
+[color]
+	ui = auto
+[alias]
+	hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s' --all
+	nevermind = reset --hard
+	minitrue = rebase -i
+[push]
+	default = simple
+    followtags = true
+[fetch]
+    prune = true
+[log]
+    decorate = true
