@@ -1,0 +1,32 @@
+#!/usr/bin/python
+
+import ldap
+import re
+import sys, os
+
+for fn in ['/etc/ldap.conf', '/etc/ldap/ldap.conf']:
+    if not os.path.exists(fn):
+        continue
+    with open(fn) as fd:
+        conf = dict([line.split(None, 1) for line in fd if line.strip() and not line.strip().startswith('#')])
+    break
+else:
+    sys.exit(1)
+
+search_string = ' '.join(sys.argv[1:])
+if not re.match(r'^[a-zA-Z .*]+$', search_string):
+    print "Invalid search string"
+    sys.exit(1)
+search_string = "(|%s)" % ''.join(['(%s=*%s*)' % (key, search_string) for key in ('sn', 'mail', 'givenName', 'cn')])
+
+server = ldap.initialize(conf['URI'].split()[0])
+try:
+    server.simple_bind_s()
+except ldap.SERVER_DOWN:
+    sys.exit(0)
+entries = server.search_s(conf[BASE], ldap.SCOPE_SUBTREE, search_string)
+
+entries = [x for x in entries if 'mail' in x[1]]
+print "%d entries found" % len(entries)
+for e in entries:
+    print "%s\t%s\tFrom LDAP" % (e[1]['mail'][0], e[1]['cn'][0])
