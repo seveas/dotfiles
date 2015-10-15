@@ -1,0 +1,10 @@
+# Account settings
+set realname="Dennis Kaarsemaker"
+set from='dennis@kaarsemaker.net'
+set header_cache="/home/dennis/.cache/mutt-k/headers"
+set message_cachedir="/home/dennis/.cache/mutt-k/messages"
+set spoolfile="imaps://dennis@kaarsemaker.net@imap.gmail.com/INBOX"
+set folder="imaps://dennis@kaarsemaker.net@imap.gmail.com/INBOX"
+set smtp_url="smtp://dennis@kaarsemaker.net@smtp.gmail.com"
+set signature="~/.signature-k"
+source "~/.muttrc-common"

@@ -1,0 +1,54 @@
+set record="=Sent"
+set postponed="=Drafts"
+# Passwords are fetched from gnome-keyring
+# set smtp_pass=""
+# set imap_pass=""
+source "~/bin/mutt-keyring $folder $smtp_url|"
+
+# Index settings, usable threads and arrow keys
+set sort=threads
+set strict_threads=yes
+set index_format="%Z %{%b %d %Y %H:%M} %-15.15L %s"
+set folder_format="%2C %-6N %f"
+bind index j next-entry
+bind index k previous-entry
+bind index <Down> next-entry
+bind index <Up> previous-entry
+# The index of the index is the list of mailboxes
+macro index i "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list"
+bind attach i exit
+
+# Pager usablity, arrows, mini-index and don't start reading next mail
+ignore *
+unignore from subject to cc date
+hdr_order from to cc date subject
+bind pager j next-line
+bind pager k previous-line
+bind pager <Down> next-line
+bind pager <Up> previous-line
+set pager_index_lines=10
+set pager_stop=yes
+set crypt_verify_sig=no
+
+# Misc. settings
+set mailcap_path="/etc/mailcap"
+set imap_check_subscribed=yes
+set mail_check=300
+set confirmappend=no
+set forward_quote=yes
+set mark_old=no
+set smileys=="(>From )|(:[-^]?[][)(><}{|/DP])"
+set wrapmargin=40
+set nomarkers
+
+# Don't use black as background. Colorscheme may change
+color normal     white default
+color attachment yellow default
+color hdrdefault cyan default
+color indicator  default cyan
+color markers    brightred default
+color quoted     green default
+color signature  cyan default
+color tilde      blue default
+color tree       red default
+color index      brightwhite default ~N

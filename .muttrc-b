@@ -1,0 +1,11 @@
+# Account settings
+set realname="Dennis Kaarsemaker"
+set from='dennis.kaarsemaker@booking.com'
+set header_cache="/home/dennis/.cache/mutt-b/headers"
+set message_cachedir="/home/dennis/.cache/mutt-b/messages"
+set spoolfile="imaps://dkaarsemaker@imap.booking.com/INBOX"
+set folder="imaps://dkaarsemaker@imap.booking.com/INBOX"
+set smtp_url="smtp://dkaarsemaker@mercury.booking.com:587"
+set signature="~/.signature-b"
+set query_command="/home/dennis/bin/mutt-ldapsearch"
+source "~/.muttrc-common"
