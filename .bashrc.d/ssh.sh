@@ -19,18 +19,12 @@ if [ -d ~/.ssh ]; then
     if [ ! -e ~/.ssh/known_hosts ]; then touch ~/.ssh/known_hosts; fi
     for x in `(sed -e 's/[, ].*//' ~/.ssh/known_hosts; awk '/^Host [^*?]+$/{print $2}' ~/.ssh/config) | grep -v lom.booking.com | sort -r`; do
         # Don't override commands
-        type $x > /dev/null 2>&1 && continue
+        if ! type $x > /dev/null 2>&1; then
+            alias $x="ssh $x"
+        fi
         y=${x/.*/}
         if ! type $y > /dev/null 2>&1; then
             alias $y="ssh $x"
-        fi
-        y=${y/lhr1-/}
-        y=${y/ams?-/}
-        y=${y/cbg?-/}
-        if [ "$y" != "$x" ]; then
-            if ! type $y > /dev/null 2>&1; then
-                alias $y="ssh $x"
-            fi
         fi
     done
 fi
