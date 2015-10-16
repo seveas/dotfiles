@@ -1,6 +1,6 @@
 [submodule ".vim/bundle/bind.vim"]
 	path = .vim/bundle/bind.vim
-	url = github.com:seveas/bind.vim.git
+	url = git@github.com:seveas/bind.vim.git
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
