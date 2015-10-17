@@ -26,7 +26,7 @@ __prompt() {
         USERX=$USER
         PROMPT='$ '
     fi
-    PS1="$USERX@$HOSTNAME:${PWD/$HOME/\~}"
+    PS1="$VCSH$USERX@$HOSTNAME:${PWD/$HOME/\~}"
     if [ "$PS1_GIT" == 1 ]; then
         __git_ps1 "$PS1" "$PROMPT"
     else
