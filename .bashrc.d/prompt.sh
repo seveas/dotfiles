@@ -13,6 +13,12 @@ __prompt() {
         echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/\~}\007"
         ;;
     esac
+    if [ -n "$OLDPWD" ]; then
+        if declare -f "$CD_COMMAND" >/dev/null; then
+            $CD_COMMAND
+            OLDPWD=
+        fi
+    fi
     if [ $USER  == 'root' ]; then
         USERX="\033[31;1m$USER\033[0m"
         PROMPT='# '
