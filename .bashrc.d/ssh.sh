@@ -28,3 +28,6 @@ if [ -d ~/.ssh ]; then
         fi
     done
 fi
+if [ -e /etc/hosts.booking ]; then
+    complete -W "$(</etc/hosts.booking)" ssh
+fi
