@@ -1,3 +1,6 @@
+if [ -e ~/.dotfiles ]; then
+    PATH=$PATH:~/.dotfiles/bin
+fi
 if [ $(stat -c %Y $(vcsh dotfiles rev-parse --git-dir)) -lt $(( $(date +%s) - 3600 )) ]; then
     vcsh dotfiles fetch
 fi
