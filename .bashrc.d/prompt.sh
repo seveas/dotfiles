@@ -8,9 +8,10 @@ fi
 
 __prompt() {
     history -a
+    H='~'
     case "$TERM" in
     xterm*|rxvt*)
-        echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/\~}\007"
+        echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/$HOME/$H}\007"
         ;;
     esac
     if [ -n "$OLDPWD" ]; then
@@ -26,7 +27,7 @@ __prompt() {
         USERX=$USER
         PROMPT='$ '
     fi
-    PS1="$VCSH$USERX@$HOSTNAME:${PWD/$HOME/\~}"
+    PS1="$VCSH$USERX@${HOSTNAME%%.*}:${PWD/$HOME/$H}"
     if [ "$PS1_GIT" == 1 ]; then
         __git_ps1 "$PS1" "$PROMPT"
     else
