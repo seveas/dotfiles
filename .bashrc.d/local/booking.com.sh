@@ -8,8 +8,8 @@ export ftp_proxy=$http_proxy
 export rsync_proxy=$http_proxy
 export no_proxy="*.booking.com *.activehotels.net *.activehotels.com"
 
-for role in $SERVERDB_ROLES; do
-    if [ -e ~/.bashrc.d/local/role.sh ]; then
-        . ~/.bashrc.d/local/role.sh
+for role in $SERVERDB_ROLE_NAMES; do
+    if [ -e ~/.bashrc.d/local/$role.sh ]; then
+        . ~/.bashrc.d/local/$role.sh
     fi
 done
