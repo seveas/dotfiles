@@ -1,4 +1,10 @@
 set nocompatible                    " We are vim, not vi
+
+let &runtimepath = printf('%s/vimfiles,%s,%s/vimfiles/after', $VIM, $VIMRUNTIME, $VIM)
+let s:homedir = expand('<sfile>:p:h')
+"let &runtimepath = printf('%s,%s,%s/after', s:vimdir, &runtimepath, s:vimdir)
+let &runtimepath = printf('%s/.vim,%s', s:homedir, &runtimepath)
+
 set backspace=indent,eol,start      " More powerful backspacing
 "set textwidth=80                    " No auto-linebreaking
 " Autowrapping is ok for text
