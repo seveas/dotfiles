@@ -20,14 +20,21 @@ __prompt() {
             OLDPWD=
         fi
     fi
-    if [ $USER  == 'root' ]; then
-        USERX="\033[31;1m$USER\033[0m"
+    case "$SUDO_USER,$USER" in
+    *,root)
+        USERX="\033[31;1m$USER\033[0m@"
         PROMPT='# '
-    else
-        USERX=$USER
+        ;;
+    ,*)
+        USERX=
         PROMPT='$ '
-    fi
-    PS1="$VCSH$USERX@${HOSTNAME%%.*}:${PWD/$HOME/$H}"
+        ;;
+    *)
+        USERX="$USER@"
+        PROMPT='$ '
+        ;;
+    esac
+    PS1="$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}"
     if [ "$PS1_GIT" == 1 ]; then
         __git_ps1 "$PS1" "$PROMPT"
     else
