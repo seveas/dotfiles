@@ -6,6 +6,21 @@ if declare -f __git_ps1 > /dev/null; then
     PS1_GIT=1
 fi
 
+case "$SUDO_USER,$USER" in
+*,root)
+    USERX="\033[31;1m$USER\033[0m@"
+    PROMPT='# '
+    ;;
+,*)
+    USERX=
+    PROMPT='$ '
+    ;;
+*)
+    USERX="$USER@"
+    PROMPT='$ '
+    ;;
+esac
+
 __prompt() {
     history -a
     H='~'
@@ -20,20 +35,6 @@ __prompt() {
             OLDPWD=
         fi
     fi
-    case "$SUDO_USER,$USER" in
-    *,root)
-        USERX="\033[31;1m$USER\033[0m@"
-        PROMPT='# '
-        ;;
-    ,*)
-        USERX=
-        PROMPT='$ '
-        ;;
-    *)
-        USERX="$USER@"
-        PROMPT='$ '
-        ;;
-    esac
     PS1="$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}"
     if [ "$PS1_GIT" == 1 ]; then
         __git_ps1 "$PS1" "$PROMPT"
