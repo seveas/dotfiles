@@ -1,7 +1,7 @@
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
-export LESS='-MQiCFsSX'
+export LESS='-MQCFSX'
 export PATH=~/bin:$PATH:~/code/hacks
 export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
