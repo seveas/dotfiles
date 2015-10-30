@@ -6,6 +6,7 @@ if [ $(stat -c %Y "$(vcsh dotfiles rev-parse --git-dir)"/FETCH_HEAD) -lt $(( $(d
         vcsh dotfiles fetch
     fi
 fi
+VCSH=
 if [ -n "$(vcsh dotfiles status --porcelain)" ]; then
     VCSH="*"
 fi
