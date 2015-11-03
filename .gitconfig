@@ -13,8 +13,8 @@
 	minitrue = rebase -i
 [push]
 	default = simple
-    followtags = true
+	followtags = true
 [fetch]
-    prune = true
+	prune = true
 [log]
-    decorate = true
+	decorate = true
