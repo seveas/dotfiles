@@ -11,7 +11,6 @@ __maybe_fetch() {
         ;;
     *)
         __last_repo=$__repo
-        set +m
         git fetch -q --all 2>/dev/null &
         ;;
     esac
@@ -27,4 +26,7 @@ __fix_git_config() {
     esac
 }
 
-CD_COMMAND=__cd
+cd() {
+    command cd "$@"
+    ( set +m; __cd )
+}

@@ -86,12 +86,6 @@ __prompt() {
         echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/$HOME/$H}\007"
         ;;
     esac
-    if [ -n "$OLDPWD" ]; then
-        if declare -f "$CD_COMMAND" >/dev/null; then
-            $CD_COMMAND
-            OLDPWD=
-        fi
-    fi
     PS1="$FAIL$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}"
     if [ "$PS1_GIT" == 1 ]; then
         __git_ps1 "$PS1" "$PROMPT"
