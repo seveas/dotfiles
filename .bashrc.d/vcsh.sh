@@ -3,7 +3,9 @@ if [ -e ~/.dotfiles ]; then
 fi
 if [ $(stat -c %Y "$(vcsh dotfiles rev-parse --git-dir)"/FETCH_HEAD) -lt $(( $(date +%s) - 3600 )) ]; then
     if ssh-add -l >/dev/null 2>&1; then
-        vcsh dotfiles fetch
+        if /sbin/route -n | grep -q UG; then
+            vcsh dotfiles fetch
+        fi
     fi
 fi
 VCSH=
