@@ -8,13 +8,13 @@ shopt -s checkwinsize no_empty_cmd_completion histappend
 # bashrc.d/sudo.sh to work
 OLDHOME="$HOME"
 HOME=$(dirname ${BASH_SOURCE[0]})
+
+if [ -e ~/.bashrc.d/local/mine.sh ]; then
+    . ~/.bashrc.d/local/mine.sh
+fi
 if [ -d ~/.bashrc.d ]; then
     for f in ~/.bashrc.d/*.sh; do
         . $f
     done
-fi
-
-if [ -e ~/.bashrc.d/local/mine.sh ]; then
-    . ~/.bashrc.d/local/mine.sh
 fi
 HOME="$OLDHOME"
