@@ -1,3 +1,4 @@
+test -n "$SUDO_USER" && return
 __last_repo=
 __cd() {
     __maybe_fetch

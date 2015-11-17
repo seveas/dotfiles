@@ -1,6 +1,7 @@
 if [ -e ~/.dotfiles ]; then
     PATH=$PATH:~/.dotfiles/bin
 fi
+test -n "$SUDO_USER" && return
 if [ $(stat -c %Y "$(vcsh dotfiles rev-parse --git-dir)"/FETCH_HEAD) -lt $(( $(date +%s) - 3600 )) ]; then
     if ssh-add -l >/dev/null 2>&1; then
         if /sbin/route -n | grep -q UG; then
