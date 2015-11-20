@@ -9,12 +9,12 @@ __git_update() {
     *booking.com*,*booking.com*)
         ;;
     *booking.com*,*)
-        export GIT_AUTHOR_MAIL=dennis.kaarsemaker@booking.com
-        export GIT_COMMITTER_MAIL=dennis.kaarsemaker@booking.com
+        export GIT_AUTHOR_EMAIL=dennis.kaarsemaker@booking.com
+        export GIT_COMMITTER_EMAIL=dennis.kaarsemaker@booking.com
         ;;
     *)
-        unset GIT_AUTHOR_MAIL
-        unset GIT_COMMITTER_MAIL
+        unset GIT_AUTHOR_EMAIL
+        unset GIT_COMMITTER_EMAIL
         if [ "$__repo" != "$__last_repo" ]; then
             __last_repo=$__repo
             ( set +m; git fetch -q --all 2>/dev/null & )
