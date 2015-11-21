@@ -24,14 +24,14 @@ expand_host() {
 }
 
 for item in $(expand_host $(hostname -f)); do
-    if [ -e ~/.bashrc.d/local/$item.sh ]; then
-        . ~/.bashrc.d/local/$item.sh
+    if [ -e ~/.bashrc.d/local/$item.$phase.sh ]; then
+        . ~/.bashrc.d/local/$item.$phase.sh
     fi
 done
 for ip in $(ip addr list  | sed -ne 's/.*inet6\? \([^ /]*\).*/\1/p'); do
     for item in $(expand_ip $ip); do
-        if [ -e ~/.bashrc.d/local/$item.sh ]; then
-            . ~/.bashrc.d/local/$item.sh
+        if [ -e ~/.bashrc.d/local/$item.$phase.sh ]; then
+            . ~/.bashrc.d/local/$item.$phase.sh
         fi
     done
 done

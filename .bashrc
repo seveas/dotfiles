@@ -9,12 +9,13 @@ shopt -s checkwinsize no_empty_cmd_completion histappend
 OLDHOME="$HOME"
 HOME=$(dirname ${BASH_SOURCE[0]})
 
-if [ -e ~/.bashrc.d/local/mine.sh ]; then
-    . ~/.bashrc.d/local/mine.sh
-fi
+phase=pre
+. ~/.bashrc.d/local/mine.sh
 if [ -d ~/.bashrc.d ]; then
     for f in ~/.bashrc.d/*.sh; do
         . $f
     done
 fi
+phase=post
+. ~/.bashrc.d/local/mine.sh
 HOME="$OLDHOME"

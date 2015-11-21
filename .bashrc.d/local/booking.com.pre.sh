@@ -9,7 +9,7 @@ export rsync_proxy=$http_proxy
 export no_proxy="*.booking.com *.activehotels.net *.activehotels.com"
 
 for role in $SERVERDB_ROLE_NAMES; do
-    if [ -e ~/.bashrc.d/local/$role.sh ]; then
-        . ~/.bashrc.d/local/$role.sh
+    if [ -e ~/.bashrc.d/local/$role.$phase.sh ]; then
+        . ~/.bashrc.d/local/$role.$phase.sh
     fi
 done
