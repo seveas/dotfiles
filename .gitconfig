@@ -11,6 +11,7 @@
 	hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s' --all
 	nevermind = reset --hard
 	minitrue = rebase -i
+	force-push = push --force-with-lease
 [push]
 	default = simple
 	followtags = true
