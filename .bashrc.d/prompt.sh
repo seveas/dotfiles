@@ -51,7 +51,7 @@ EXIT_CODES[158]=SIGPWR
 
 case "$SUDO_USER,$USER" in
 *,root)
-    USERX="\033[31;1m$USER\033[0m@"
+    USERX="\[\033[31;1m\]$USER\[\033[0m@\]"
     PROMPT='# '
     ;;
 ,*)
@@ -71,13 +71,13 @@ __prompt() {
         FAIL=
         ;;
     1)
-        FAIL="\033[31;1m! \033[0m"
+        FAIL="\[\033[31;1m\]! \[\033[0m\]"
         ;;
     *)
         if [ -n "${EXIT_CODES[$rc]}" ]; then
             rc="$rc,${EXIT_CODES[$rc]}"
         fi
-        FAIL="\033[31;1m!($rc) \033[0m"
+        FAIL="\[\033[31;1m\]!($rc) \[\033[0m\]"
     esac
     history -a
     H='~'
