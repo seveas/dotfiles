@@ -9,7 +9,7 @@ set backspace=indent,eol,start      " More powerful backspacing
 "set textwidth=80                    " No auto-linebreaking
 " Autowrapping is ok for text
 autocmd FileType text setlocal textwidth=78
-autocmd FileType text,markdown setlocal spell
+autocmd FileType text,markdown,gitcommit setlocal spell
 set nobackup                        " Hate backups
 set viminfo='20,\"100               " 100 lines of registers
 set history=100                     " And 100 lines of history
