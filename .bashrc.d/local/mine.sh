@@ -1,4 +1,5 @@
 expand_ip() {
+  (
     ip=
     nip=$1
     case $nip in
@@ -12,8 +13,10 @@ expand_ip() {
         nip=${nip%:*}
         nip=${nip%:}
     done
+  ) | tac
 }
 expand_host() {
+  (
     host=
     nhost=$1
     while [ "$host" != "$nhost" ]; do
@@ -21,6 +24,7 @@ expand_host() {
         echo $host
         nhost=${host#*.}
     done
+  ) | tac
 }
 
 for item in $(expand_host $(hostname -f)); do
