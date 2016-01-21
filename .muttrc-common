@@ -29,6 +29,11 @@ bind pager <Up> previous-line
 set pager_index_lines=10
 set pager_stop=yes
 set crypt_verify_sig=no
+set pager_stop
+
+# See some mime types inline
+auto_view text/html
+auto_view text/x-patch
 
 # Misc. settings
 set mailcap_path="/etc/mailcap"
@@ -40,6 +45,7 @@ set mark_old=no
 set smileys=="(>From )|(:[-^]?[][)(><}{|/DP])"
 set wrapmargin=40
 set nomarkers
+set recall=no
 
 # Don't use black as background. Colorscheme may change
 color normal     white default
