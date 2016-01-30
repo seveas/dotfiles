@@ -1,7 +1,7 @@
 " sleuth.vim - Heuristically set buffer options
 " Maintainer:   Tim Pope <http://tpo.pe/>
-" Version:      1.1
-" GetLatestVimScripts: 4375 1 :AutoInstall: sleuth.vim
+" Version:      1.1-patched
+" Local customizations by seveas
 
 if exists("g:loaded_sleuth") || v:version < 700 || &cp
   finish
@@ -138,30 +138,21 @@ function! s:detect() abort
   let patterns = s:patterns_for(&filetype)
   call filter(patterns, 'v:val !~# "/"')
   let dir = expand('%:p:h')
-  while isdirectory(dir) && dir !=# fnamemodify(dir, ':h')
-    for pattern in patterns
-      for neighbor in split(glob(dir.'/'.pattern), "\n")[0:7]
-        if neighbor !=# expand('%:p') && filereadable(neighbor)
-          call extend(options, s:guess(readfile(neighbor, '', 256)), 'keep')
-        endif
-        if s:apply_if_ready(options)
-          let b:sleuth_culprit = neighbor
-          return
-        endif
-      endfor
+  for pattern in patterns
+    for neighbor in split(glob(dir.'/'.pattern), "\n")[0:7]
+      if neighbor !=# expand('%:p') && filereadable(neighbor)
+        call extend(options, s:guess(readfile(neighbor, '', 256)), 'keep')
+      endif
+      if s:apply_if_ready(options)
+        let b:sleuth_culprit = neighbor
+        return
+      endif
     endfor
-    let dir = fnamemodify(dir, ':h')
-  endwhile
+  endfor
   if has_key(options, 'shiftwidth')
     return s:apply_if_ready(extend({'expandtab': 1}, options))
   endif
 endfunction
-
-setglobal smarttab
-
-if !exists('g:did_indent_on')
-  filetype indent on
-endif
 
 augroup sleuth
   autocmd!
