@@ -53,7 +53,6 @@ set smartindent                     " Be smart
 "nnoremap Q gq{
 
 set makeprg=make
-filetype plugin on
 
 "set bg=dark
 set wildmode=longest,list
