@@ -19,3 +19,5 @@
 	prune = true
 [log]
 	decorate = true
+[transfer]
+	fsckObjects = true
