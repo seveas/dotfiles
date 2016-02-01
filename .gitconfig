@@ -21,3 +21,5 @@
 	decorate = true
 [transfer]
 	fsckObjects = true
+[merge]
+	stat = false
