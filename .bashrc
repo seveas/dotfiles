@@ -11,11 +11,9 @@ HOME=$(dirname ${BASH_SOURCE[0]})
 
 phase=pre
 . ~/.bashrc.d/local/mine.sh
-if [ -d ~/.bashrc.d ]; then
-    for f in ~/.bashrc.d/*.sh; do
-        . $f
-    done
-fi
+for f in ~/.bashrc.d/*.sh; do
+    . $f
+done
 phase=post
 . ~/.bashrc.d/local/mine.sh
 HOME="$OLDHOME"
