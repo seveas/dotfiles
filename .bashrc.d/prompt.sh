@@ -52,6 +52,25 @@ EXIT_CODES[155]=SIGPROF
 EXIT_CODES[157]=SIGIO
 EXIT_CODES[158]=SIGPWR
 
+signal() {
+    if [ -n "${EXIT_CODES[$1]}" ]; then
+        echo ${EXIT_CODES[$1]}
+    elif [ -n "${EXIT_CODES[$(($1+128))]}" ]; then
+        echo ${EXIT_CODES[$(($1+128))]}
+    else (
+        shopt -s nocasematch
+        for key in ${!EXIT_CODES[@]}; do
+            if [[ ${EXIT_CODES[$key]} =~ ^(EX_)?$1$ ]]; then
+                echo $key
+                return
+            elif [[ ${EXIT_CODES[$key]} =~ ^(SIG)?$1$ ]]; then
+                echo $((key-128))
+                return
+            fi
+        done
+    ) fi
+}
+
 case "$SUDO_USER,$USER" in
 *,root)
     USERX="\[\033[31;1m\]$USER\[\033[0m@\]"
