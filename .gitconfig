@@ -12,6 +12,7 @@
 	nevermind = reset --hard
 	minitrue = rebase -i
 	force-push = push --force-with-lease
+	fast-forward = merge --ff-only
 [push]
 	default = simple
 	followtags = true
