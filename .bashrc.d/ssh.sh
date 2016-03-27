@@ -13,11 +13,6 @@ if ! $(ssh-add -l >/dev/null 2>&1); then
     done
 fi
 
-# Put authorized_keys in place
-if [ -x /usr/sbin/login_duo ] && [ ! -e ~/.ssh/authorized_keys ] && [ -z "$SUDO_USER" ]; then
-    ln -s authorized_keys_personal ~/.ssh/authorized_keys
-fi
-
 # Make lots of aliases
 if [ -d ~/.ssh ]; then
     if [ ! -e ~/.ssh/config ]; then touch ~/.ssh/config; fi
