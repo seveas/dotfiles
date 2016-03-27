@@ -1,8 +1,5 @@
 #!/bin/bash -- to trick vim...
 
-# Use funky ssh by default
-alias ssh=~/bin/my_ssh
-
 # Steal SSH agent unless this one works
 if ! $(ssh-add -l >/dev/null 2>&1); then
     for f in /tmp/ssh-*; do

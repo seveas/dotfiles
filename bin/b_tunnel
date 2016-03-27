@@ -35,7 +35,7 @@ def ssh_connect(command, exthost, inthost, forward):
     if not shell[command](exthost, ':'):
         die("SSH to %s failed" % exthost)
     print("Connecting to %s and creating tunnel" % inthost)
-    proxy = '-P%s' % exthost
+    proxy = '-oProxyCommand=ssh %s -W %%h:%%p' % exthost
     tunnel = '-L' + ':'.join([str(x) for x in forward])
     if not shell[command](proxy, tunnel, '-f', '-n', '-N', inthost):
         die("Connecting to %s failed" % inthost)
