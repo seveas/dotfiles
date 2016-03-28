@@ -11,29 +11,19 @@ if [ $(stat -c %Y "$(vcsh dotfiles rev-parse --git-dir)"/FETCH_HEAD) -lt $(( $(d
     fi
 fi
 VCSH=
-if [ -n "$(vcsh dotfiles status --porcelain)" ]; then
-    VCSH="*"
-fi
-if [ $(vcsh dotfiles rev-list --count '@{u}..') != 0 ]; then
-    VCSH="$VCSH>"
-fi
-if [ -n "$VCSH" ]; then
-    VCSH="\[\033[31;1m\]$VCSH\[\033[0m\] "
-else
-    if [ $(vcsh dotfiles rev-list --count '..@{u}') != 0 ]; then
-        vcsh dotfiles merge --ff --ff-only '@{u}'
-    fi
-fi
 vcsh() {
     command vcsh "$@"
     VCSH=
-    if [ -n "$(command vcsh dotfiles status --porcelain)" ]; then
-        VCSH="*"
-    fi
-    if [ $(command vcsh dotfiles rev-list --count '@{u}..') != 0 ]; then
-        VCSH="$VCSH>"
-    fi
+    for repo in $(command vcsh list); do
+        if [ -n "$(command vcsh $repo status --porcelain)" ]; then
+            VCSH="*"
+        fi
+        if [ -n "$(command vcsh $repo rev-parse '@{u}' 2>/dev/null)" ] && [ $(command vcsh $repo rev-list --count '@{u}..') != 0 ]; then
+            VCSH="$VCSH>"
+        fi
+    done
     if [ -n "$VCSH" ]; then
         VCSH="\[\033[31;1m\]$VCSH\[\033[0m\] "
     fi
 }
+vcsh list > /dev/null
