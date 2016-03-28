@@ -3,7 +3,6 @@
 test -n "$SUDO_USER" && return
 
 for srcf in $(find ~/.template/ -type f); do
-    echo "$srcf"
     dst="${srcf/.template\/}"
     if [ "$srcf" -nt "$dst" ]; then (
         content=
@@ -18,6 +17,9 @@ for srcf in $(find ~/.template/ -type f); do
                 else
                     mkdir -p "$dstdir"
                 fi
+            fi
+            if [ ! -w "$dst" ]; then
+                chmod u+w "$dst"
             fi
             echo "$content" > "$dst"
         fi
