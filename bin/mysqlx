@@ -1,0 +1,48 @@
+#!/usr/bin/python3
+#
+# MySQL client wrapper for safe password storage in the keyring.
+
+import argparse
+import os
+import pexpect
+import secretstorage
+import sys
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('schema')
+    args = ap.parse_args()
+    bus = secretstorage.dbus_init()
+    collection = secretstorage.get_default_collection(bus)
+    connect(args.schema, collection)
+
+def connect(schema, collection):
+    host = 'odbc-%s-01.corp.booking.com' % schema
+    username, password = get_login(collection, host)
+    if not username:
+        username, password = get_login(collection, 'https://vpn.booking.com')
+        save_login(collection, host, username, password)
+    args = [
+        '--host=%s' % host,
+        '--user=%s' % username,
+        '--password', 
+        '--prompt=%s@%s> ' % (username, schema),
+        '--enable-cleartext-plugin',
+        '--ssl-ca=~/.config/ssl/booking-server-ca.txt',
+        schema,
+    ]
+    mysql = pexpect.spawn('mysql', args, timeout=1)
+    mysql.expect('Enter password:.*')
+    mysql.sendline(password)
+    mysql.interact()
+
+def get_login(collection, hostname):
+    items = list(collection.search_items({'hostname': hostname}))
+    if not items:
+        return None, None
+    return (items[0].get_attributes()['username'], items[0].get_secret().decode('utf-8'))
+
+def save_login(collection, hostname, username, password):
+    collection.create_item(hostname, {'hostname': hostname, 'username': username}, password, True)
+
+main()
