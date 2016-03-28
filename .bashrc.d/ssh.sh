@@ -1,5 +1,8 @@
 #!/bin/bash -- to trick vim...
 
+# Make sure the path for controlfiles exists
+mkdir -p -m700 ~/.ssh/control
+
 # Steal SSH agent unless this one works
 if ! $(ssh-add -l >/dev/null 2>&1); then
     for f in /tmp/ssh-*; do
