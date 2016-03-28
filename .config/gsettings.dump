@@ -1,0 +1,15 @@
+com.canonical.indicator.datetime show-seconds true
+com.canonical.indicator.datetime show-week-numbers true
+com.ubuntu.update-manager autoclose-install-window true
+com.ubuntu.update-manager check-dist-upgrades true
+org.compiz.integrated command-1 '/usr/bin/terminator'
+org.compiz.integrated run-command-1 ['<Super>t']
+org.gnome.desktop.input-sources sources [('xkb', 'us+euro'), ('xkb', 'us')]
+org.gnome.desktop.input-sources xkb-options ['compose:ralt', 'caps:none', 'altwin:left_meta_win']
+org.gnome.desktop.lockdown disable-user-switching true
+org.gnome.desktop.wm.keybindings show-desktop ['<Super>d']
+org.gnome.desktop.wm.keybindings toggle-maximized ['<Alt>m']
+org.gnome.evolution.mail composer-show-cc true
+org.gnome.evolution.shell buttons-style 'icons'
+org.gnome.evolution.shell buttons-visible false
+org.gnome.evolution.shell toolbar-visible false
