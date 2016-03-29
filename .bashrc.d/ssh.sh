@@ -15,7 +15,7 @@ fi
 
 # Make lots of aliases
 if [ -d ~/.ssh ]; then
-    if [ ! -e ~/.ssh/config ]; then touch ~/.ssh/config; fi
+    if [ ! -e ~/.ssh/config ]; then . ~/.bashrc.d/templates.sh; fi
     if [ ! -e ~/.ssh/known_hosts ]; then touch ~/.ssh/known_hosts; fi
     for x in `(sed -e 's/[, ].*//' ~/.ssh/known_hosts; awk '/^Host [^*?]+$/{print $2}' ~/.ssh/config) | grep -v lom.booking.com | sort -r`; do
         # Don't override commands
