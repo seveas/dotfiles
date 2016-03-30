@@ -18,7 +18,7 @@ for srcf in $(find ~/.template/ -type f); do
                     mkdir -p "$dstdir"
                 fi
             fi
-            if [ ! -w "$dst" ]; then
+            if [ -e "$dst" ] && [ ! -w "$dst" ]; then
                 chmod u+w "$dst"
             fi
             echo "$content" > "$dst"
