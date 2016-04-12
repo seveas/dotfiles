@@ -24,3 +24,5 @@
 	fsckObjects = true
 [merge]
 	stat = false
+[rebase]
+	autosquash = true
