@@ -60,7 +60,10 @@ signal() {
     else (
         shopt -s nocasematch
         for key in ${!EXIT_CODES[@]}; do
-            if [[ ${EXIT_CODES[$key]} =~ ^(EX_)?$1$ ]]; then
+            if [[ $1 =~ ^SIG ]] && [[ ${EXIT_CODES[$key]} =~ ^$1$ ]]; then
+                echo $((key-128))
+                return
+            elif [[ ${EXIT_CODES[$key]} =~ ^(EX_)?$1$ ]]; then
                 echo $key
                 return
             elif [[ ${EXIT_CODES[$key]} =~ ^(SIG)?$1$ ]]; then
