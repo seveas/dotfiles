@@ -79,3 +79,13 @@ call pathogen#infect()
 
 au BufNewFile,BufRead *.git/worktrees/*/COMMIT_EDITMSG  setf gitcommit
 au BufNewFile,BufRead *.git/worktrees/*/MERGE_MSG       setf gitcommit
+
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+    " Need to find a good 256 color scheme
+    execute "set t_Co=8"
+endif

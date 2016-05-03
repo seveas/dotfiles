@@ -10,3 +10,7 @@ tmux-takeover() {
     shift
     sudo -u "$user" tmux attach "$@"
 }
+
+if [ -n "$TMUX" ]; then
+    export TERM=screen-256color
+fi
