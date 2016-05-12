@@ -1,10 +1,14 @@
 test -n "$SUDO_USER" && return
 test -z "$DBUS_SESSION_BUS_ADDRESS" && return
 test -x /usr/bin/gsettings || return
-test ~/.config/gsettings.dump -nt ~/.config/gsettings.dump.ts || return
+test ~/.config/gsettings.dump -nt ~/.config/gsettings.dump.ts && {
+    while read schema key val; do
+        gsettings set "$schema" "$key" "$val"
+    done < ~/.config/gsettings.dump
 
-while read schema key val; do
-    gsettings set "$schema" "$key" "$val"
-done < ~/.config/gsettings.dump
-
-touch ~/.config/gsettings.dump.ts
+    touch ~/.config/gsettings.dump.ts
+}
+test ~/.config/dconf.dump -nt ~/.config/dconf.dump.ts && {
+    dconf load / < ~/.config/dconf.dump
+    touch ~/.config/dconf.dump.ts
+}

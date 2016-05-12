@@ -1,15 +1,26 @@
+com.canonical.indicator.datetime show-date true
+com.canonical.indicator.datetime show-day true
+com.canonical.indicator.datetime show-events false
 com.canonical.indicator.datetime show-seconds true
 com.canonical.indicator.datetime show-week-numbers true
+com.canonical.Unity.Launcher favorites ['application://org.gnome.Nautilus.desktop', 'application://firefox.desktop', 'unity://running-apps', 'application://evolution.desktop', 'unity://expo-icon', 'unity://devices']
 com.ubuntu.update-manager autoclose-install-window true
 com.ubuntu.update-manager check-dist-upgrades true
+com.ubuntu.update-manager show-details true
 org.compiz.integrated command-1 '/usr/bin/terminator'
 org.compiz.integrated run-command-1 ['<Super>t']
 org.gnome.desktop.input-sources sources [('xkb', 'us+euro'), ('xkb', 'us')]
 org.gnome.desktop.input-sources xkb-options ['compose:ralt', 'caps:none', 'altwin:left_meta_win']
 org.gnome.desktop.lockdown disable-user-switching true
 org.gnome.desktop.wm.keybindings show-desktop ['<Super>d']
+org.gnome.desktop.wm.keybindings switch-input-source ['']
+org.gnome.desktop.wm.keybindings switch-input-source-backward ['']
 org.gnome.desktop.wm.keybindings toggle-maximized ['<Alt>m']
+org.gnome.evolution.calendar use-24hour-format true
 org.gnome.evolution.mail composer-show-cc true
+org.gnome.evolution.mail prompt-on-composer-mode-switch false
 org.gnome.evolution.shell buttons-style 'icons'
 org.gnome.evolution.shell buttons-visible false
 org.gnome.evolution.shell toolbar-visible false
+org.gnome.gedit.preferences.editor wrap-mode 'none'
+org.gnome.settings-daemon.plugins.media-keys screensaver '<Super>l'
