@@ -4,6 +4,7 @@ com.canonical.indicator.datetime show-events false
 com.canonical.indicator.datetime show-seconds true
 com.canonical.indicator.datetime show-week-numbers true
 com.canonical.Unity.Launcher favorites ['application://org.gnome.Nautilus.desktop', 'application://firefox.desktop', 'unity://running-apps', 'application://evolution.desktop', 'unity://expo-icon', 'unity://devices']
+com.ubuntu.sound allow-amplified-volume true
 com.ubuntu.update-manager autoclose-install-window true
 com.ubuntu.update-manager check-dist-upgrades true
 com.ubuntu.update-manager show-details true
