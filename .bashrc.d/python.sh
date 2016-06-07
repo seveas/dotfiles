@@ -1,4 +1,4 @@
-export PYTHONPATH=/home/dennis/git/sysadmin:/home/dennis/git_tree/sysadmin
+export PYTHONPATH=/home/dennis/lib/python
 export PYTHONSTARTUP=$HOME/.startup.py
 from() { expect -c "spawn -noecho python
 expect \">>> \"
