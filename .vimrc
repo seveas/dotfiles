@@ -89,3 +89,13 @@ if &term =~ '^screen'
     " Need to find a good 256 color scheme
     execute "set t_Co=8"
 endif
+
+if has('persistent_undo')
+    set undodir=$HOME/.local/share/vim/undo
+    set undolevels=5000
+    set undofile
+endif
+
+nmap S :%s//g<left><left>
+
+vmap <BS> x
