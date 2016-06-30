@@ -16,7 +16,7 @@ vcsh() {
     VCSH=
     for repo in $(command vcsh list); do
         if [ -n "$(command vcsh $repo status --porcelain)" ]; then
-            VCSH="*"
+            VCSH="$VCSH*"
         fi
         if [ -n "$(command vcsh $repo rev-parse '@{u}' 2>/dev/null)" ] && [ $(command vcsh $repo rev-list --count '@{u}..') != 0 ]; then
             VCSH="$VCSH>"
@@ -27,3 +27,10 @@ vcsh() {
     fi
 }
 vcsh list > /dev/null
+if [ -n "$VCSH" ]; then
+    for repo in $(command vcsh list); do
+        if [ $(command vcsh dotfiles rev-list --count '..@{u}') != 0 ]; then
+            command vcsh $repo merge --ff --ff-only '@{u}'
+        fi
+    done
+fi
