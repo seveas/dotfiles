@@ -23,14 +23,14 @@ __git_update() {
 }
 
 cd() {
-    command cd "$@"
+    command cd "$@" || return $?
     __cd
 }
 pushd() {
-    command pushd "$@"
+    command pushd "$@" || return $?
     __cd
 }
 popd() {
-    command popd "$@"
+    command popd "$@" || return $?
     __cd
 }
