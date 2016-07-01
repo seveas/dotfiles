@@ -26,3 +26,11 @@ cd() {
     command cd "$@"
     __cd
 }
+pushd() {
+    command pushd "$@"
+    __cd
+}
+popd() {
+    command popd "$@"
+    __cd
+}
