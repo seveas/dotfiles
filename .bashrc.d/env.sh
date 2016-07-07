@@ -6,6 +6,7 @@ export LESSUTFBINFMT='*n%lc'
 export PATH=~/bin:~/go/bin/:$PATH:~/code/hacks
 export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
+export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S: "
 export PERL5LIB=~/perl/lib/perl5:$PERL5LIB
 export EMAIL=dennis@kaarsemaker.net
 export GOPATH=~/go
