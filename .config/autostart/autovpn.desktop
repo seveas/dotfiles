@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/dennis/bin/autovpn
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Automatic vpn connector
+Name=Automatic vpn connector
+Comment[en_US]=
+Comment=
