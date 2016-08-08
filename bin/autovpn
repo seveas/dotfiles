@@ -4,7 +4,7 @@
 
 import dbus
 import dbus.mainloop.glib; dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-import NetworkManager
+import NetworkManager; NetworkManager.NetworkManager.auto_reconnect()
 from gi.repository import GObject
 
 def new_input(*args):
