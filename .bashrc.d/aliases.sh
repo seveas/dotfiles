@@ -13,3 +13,7 @@ alias aton='python -c "import sys,socket,struct; print(struct.unpack(\"!I\", soc
 alias ntoa='python -c "import sys,socket,struct; print(socket.inet_ntoa(struct.pack(\"!I\", int(sys.argv[1]))))"'
 alias today='echo $(($(date +%s)/86400))'
 alias lscg=systemd-cgls
+alias dig='dig +noall +answer'
+alias ldapsearch='ldapsearch -o ldif-wrap=no -x'
+alias ldapdecode='awk '\''BEGIN{FS=":: ";c="base64 -d"}{if(/\w+:: /) {print $2 |& c; close(c,"to"); c |& getline $2; close(c); printf("%s:: \"%s\"\n", $1, $2); next} print $0 }'\'''
+alias my-puppet="sudo puppet agent -t --environment=dkaarsemaker"

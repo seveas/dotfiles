@@ -13,7 +13,6 @@ export PERL5LIB=~/perl/lib/perl5:$PERL5LIB
 export EMAIL=dennis@kaarsemaker.net
 export GOPATH=~/go
 export DEBEMAIL=$EMAIL
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
-fi
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+eval $(dircolors ~/.config/dircolors)
+export LS_COLORS
