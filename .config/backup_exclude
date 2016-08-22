@@ -49,6 +49,8 @@ backup.ab
 /var/cache
 /var/crash
 /var/lib/apt/lists
+/var/lib/lxcfs
+/var/lib/lxd
 /var/lib/golem
 /var/lib/mock
 /var/lib/mlocate
