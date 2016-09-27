@@ -22,6 +22,7 @@ bind attach i exit
 ignore *
 unignore from subject to cc date
 hdr_order from to cc date subject
+bind pager i exit
 bind pager j next-line
 bind pager k previous-line
 bind pager <Down> next-line
