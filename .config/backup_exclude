@@ -57,6 +57,7 @@ backup.ab
 /var/lib/texmf
 /var/log
 /var/tmp
+/opt/google/earth/free
 
 **/*.git/goblet/cache/
 __pycache__
