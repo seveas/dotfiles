@@ -3,7 +3,7 @@ kernel-cleanup() {
     latest=$(apt-cache depends linux-image-generic | sed -ne 's/.*Depends: linux-image-\([1-9][^ ]*\)/\1/p')
     running=$(uname -r)
     toremove=$(
-        dpkg -l linux-image-[0-9]* linux-headers-[0-9]* |
+        dpkg -l 'linux-image-[0-9]*' 'linux-headers-[0-9]*' |
         awk '/^ii/{print $2}' |
         grep -v "\(${running%%-generic}\|${latest%%-generic}\)"
     )
