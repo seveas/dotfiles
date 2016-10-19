@@ -12,6 +12,7 @@ com.ubuntu.update-manager check-dist-upgrades true
 com.ubuntu.update-manager show-details true
 org.compiz.integrated command-1 '/usr/bin/terminator'
 org.compiz.integrated run-command-1 ['<Super>t']
+org.compiz.integrated show-hud ['disabled']
 org.gnome.Charmap group-by 'block'
 org.gnome.desktop.input-sources sources [('xkb', 'us+euro'), ('xkb', 'us')]
 org.gnome.desktop.input-sources xkb-options ['compose:ralt', 'caps:none', 'altwin:left_meta_win']
