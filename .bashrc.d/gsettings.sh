@@ -1,4 +1,4 @@
-test -n "$SUDO_USER" && return
+not_with_sudo
 test -z "$DBUS_SESSION_BUS_ADDRESS" && return
 test -x /usr/bin/gsettings || return
 test ~/.config/gsettings.dump -nt ~/.config/gsettings.dump.ts && {

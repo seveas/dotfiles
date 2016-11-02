@@ -1,5 +1,11 @@
 #!/bin/bash -- to trick vim...
 
+if [ -e /etc/hosts.booking ]; then
+    complete -W "$(</etc/hosts.booking)" ssh
+fi
+
+not_with_sudo
+
 # Make sure the path for controlfiles exists
 mkdir -p -m700 ~/.ssh/control
 
@@ -29,6 +35,3 @@ if [ -d ~/.ssh ]; then
     done
 fi
 
-if [ -e /etc/hosts.booking ]; then
-    complete -W "$(</etc/hosts.booking)" ssh
-fi

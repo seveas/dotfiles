@@ -1,4 +1,5 @@
-test -n "$SUDO_USER" && return
+not_with_sudo
+
 __last_repo=
 __cd() {
     __git_update

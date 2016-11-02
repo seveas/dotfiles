@@ -9,6 +9,12 @@ shopt -s checkwinsize no_empty_cmd_completion histappend
 OLDHOME="$HOME"
 HOME=$(dirname ${BASH_SOURCE[0]})
 
+if [ -n "$SUDO_USER" ]; then
+    alias not_with_sudo=return
+else
+    alias not_with_sudo=:
+fi
+
 phase=pre
 . ~/.bashrc.d/local/mine.sh
 for f in ~/.bashrc.d/*.sh; do
