@@ -7,6 +7,7 @@ source "~/bin/mutt-keyring $folder $smtp_url|"
 
 # Index settings, usable threads and arrow keys
 set sort=threads
+set sort_aux=last-date-received
 set strict_threads=yes
 set index_format="%Z %{%b %d %Y %H:%M} %-15.15L %s"
 set folder_format="%2C %-6N %f"
