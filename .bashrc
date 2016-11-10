@@ -2,7 +2,7 @@
 [ -z "$PS1" ] && return
 
 # Sanity :)
-shopt -s checkwinsize no_empty_cmd_completion histappend
+shopt -s checkwinsize no_empty_cmd_completion histappend extglob globstar
 
 # While initializing, make HOME point to where we are, this allows the trick in
 # bashrc.d/sudo.sh to work
