@@ -20,6 +20,8 @@
 	prune = true
 [log]
 	decorate = true
+	follow = true
+	showRoot = true
 [transfer]
 	fsckObjects = true
 [merge]
