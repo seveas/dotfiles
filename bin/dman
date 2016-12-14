@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import argparse
 import csv
 import datetime
 import os
@@ -11,22 +12,30 @@ from whelk import shell
 distinfo = '/usr/share/distro-info/ubuntu.csv'
 
 def main():
-    if os.path.exists(distinfo):
-        codename = latest_supported_release()
-    else:
-        distro, codename = shell.lsb_release('-cis').stdout.splitlines()
-        if distro != 'Ubuntu':
-            codename = 'vivid'
-    page = get_manpage(codename, 'en', sys.argv[-1])
-    fd, path = tempfile.mkstemp(prefix = sys.argv[-1] + '.')
+    p = argparse.ArgumentParser()
+    p.add_argument('-r', '--release', default=get_release())
+    p.add_argument('-l', '--locale', default='en')
+    p.add_argument('section', metavar='SECTION', nargs='?')
+    p.add_argument('page', metavar='PAGE')
+    args = p.parse_args()
+    section, page = get_manpage(args.release, args.locale, args.section, args.page)
+    if not page:
+        msg = ' in section %s' % args.section if args.section else ''
+        print("No manual entry for %s%s" % (args.page, msg), file=sys.stderr)
+        sys.exit(1)
+    fd, path = tempfile.mkstemp(prefix='%s.%s.' % (args.page, section))
     try:
         os.write(fd, page)
-        argv = sys.argv[1:-1] + ['-l', path]
-        shell.man(*argv, redirect=False)
+        shell.man('-l', path, redirect=False)
     finally:
         os.unlink(path)
 
-def latest_supported_release():
+def get_release():
+    if not os.path.exists(distinfo):
+        distro, release = shell.lsb_release('-cis').stdout.splitlines()
+        if distro != 'Ubuntu':
+            return 'xenial'
+        return release
     with open(distinfo) as fd:
         releases = list(csv.DictReader(fd))
     today = datetime.datetime.today().strftime('%Y-%m-%d')
@@ -34,15 +43,16 @@ def latest_supported_release():
         if release['release'] < today:
             return release['series']
 
-def get_manpage(codename, locale, name):
-    template = "http://manpages.ubuntu.com/manpages.gz/%(codename)s/%(locale)s/man%(section)s/%(name)s.%(section)s.gz"
-    for section in range(1,10):
-        url = template % locals()
+def get_manpage(release, locale, section, name):
+    template = "http://manpages.ubuntu.com/manpages.gz/{release}/{locale}/man{sectionnum}/{name}.{section}.gz"
+    sections = [section] if section else [str(x) for x in range(1,10)]
+    for section in sections:
+        sectionnum = section[0]
+        url = template.format(**locals())
         resp = requests.get(url)
         if resp.status_code == 200:
-            return resp.content
-    print("No manual entry for %s" % name, file=sys.stderr)
-    sys.exit(1)
+            return section, resp.content
+    return None, None
 
 if __name__ == '__main__':
     main()
