@@ -4,7 +4,6 @@ if [ -e ~/.dotfiles ]; then
     PATH=$PATH:~/.dotfiles/bin
 fi
 
-VCSH=
 vcsh() {
     command vcsh "$@"
     VCSH=

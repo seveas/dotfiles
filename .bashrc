@@ -16,6 +16,7 @@ else
 fi
 
 # See if we need to update ourselves dotfiles
+VCSH=
 vcsh_update() {
     not_with_sudo
     unset vcsh
@@ -44,7 +45,16 @@ vcsh_update() {
         if [ $(vcsh $repo rev-list --count '..@{u}') != 0 ]; then
             command vcsh $repo merge --ff --ff-only '@{u}'
         fi
+        if [ -n "$(vcsh $repo status --porcelain)" ]; then
+            VCSH="$VCSH*"
+        fi
+        if [ $(vcsh $repo rev-list --count '@{u}..') != 0 ]; then
+            VCSH="$VCSH>"
+        fi
     done
+    if [ -n "$VCSH" ]; then
+        VCSH="\[\033[31;1m\]$VCSH\[\033[0m\] "
+    fi
 }
 
 # The pre phase sets up proxies
