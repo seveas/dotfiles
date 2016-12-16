@@ -12,6 +12,7 @@
 /home/*/.local/share/ubot/encyclopedia/cache
 /home/*/.mozilla/firefox/*/*.sqlite
 /home/*/.mozilla/firefox/*/Cache
+/home/*/.mozilla/firefox/*/datareporting
 /home/*/Private
 /home/*/irclogs
 /home/*/web/static/feedcache
