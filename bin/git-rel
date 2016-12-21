@@ -1,0 +1,20 @@
+#!/bin/bash
+
+. $(git --exec-path)/git-sh-setup
+
+USAGE="rev1 rev2"
+SUBDIRECTORY_OK=Yes
+OPTIONS_SPEC=
+
+rev1=$1
+rev2=$2
+git rev-parse --quiet --verify "$rev1" >/dev/null || usage
+git rev-parse --quiet --verify "$rev2" >/dev/null || usage
+ahead=$(git rev-list --count "$rev1".."$rev2")
+behind=$(git rev-list --count "$rev2".."$rev1")
+comma=" "
+if [ $behind -gt 0 ] && [ $ahead -gt 0 ]; then comma=", "; fi
+printf "$rev1 is "
+if [ $behind -gt 0 ]; then printf "$behind commits behind$comma"; fi
+if [ $ahead -gt 0 ]; then printf "$ahead commits ahead of "; fi
+echo "$rev2"
