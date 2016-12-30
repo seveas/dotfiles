@@ -1,9 +1,5 @@
 not_with_sudo
 
-if [ -e ~/.dotfiles ]; then
-    PATH=$PATH:~/.dotfiles/bin
-fi
-
 vcsh() {
     command vcsh "$@"
     VCSH=

@@ -15,6 +15,11 @@ else
     alias not_with_sudo=:
 fi
 
+# Early path additions for work-specific hacks
+if [ -e ~/.dotfiles ]; then
+    PATH=$PATH:~/.dotfiles/bin
+fi
+
 # See if we need to update ourselves dotfiles
 VCSH=
 vcsh_update() {
