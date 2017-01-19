@@ -13,6 +13,10 @@
 	minitrue = rebase -i
 	force-push = push --force-with-lease
 	fast-forward = merge --ff-only
+	whoami = var GIT_AUTHOR_IDENT
+	incoming = log ..@{upstream}
+	outgoing = log @{push}..
+	reword = commit --amend --only
 [push]
 	default = simple
 	followtags = true
@@ -28,3 +32,5 @@
 	stat = false
 [rebase]
 	autosquash = true
+[commit]
+	verbose = true
