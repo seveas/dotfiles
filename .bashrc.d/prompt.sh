@@ -106,7 +106,14 @@ __prompt() {
     esac
     DEPLOY=
     if [ -e .deploy ]; then
-        DEPLOY="\[\033[31;1m\][DEPLOY]\[\033[0m\]"
+        color=32
+        if [ -e .git/git-deploy ]; then
+            color=33
+            if [ $(stat --format %U .git/git-deploy/start) != $USER ]; then
+                color=31
+            fi
+        fi
+        DEPLOY=" \[\033[$color;1m\][DEPLOY]\[\033[0m\]"
     fi
     history -a
     H='~'
