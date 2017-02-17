@@ -16,7 +16,7 @@ __git_update() {
     *)
         unset GIT_AUTHOR_EMAIL
         unset GIT_COMMITTER_EMAIL
-        if [ "$__repo" != "$__last_repo" ]; then
+        if [ "$__repo" != "$__last_repo" ] && ! [ -e .deploy ]; then
             __last_repo=$__repo
             ( set +m; git fetch -q --all 2>/dev/null & )
         fi

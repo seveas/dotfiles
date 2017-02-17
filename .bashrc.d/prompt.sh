@@ -104,6 +104,10 @@ __prompt() {
         fi
         FAIL="\[\033[31;1m\]!($rc) \[\033[0m\]"
     esac
+    DEPLOY=
+    if [ -e .deploy ]; then
+        DEPLOY="\[\033[31;1m\][DEPLOY]\[\033[0m\]"
+    fi
     history -a
     H='~'
     case "$TERM" in
@@ -111,7 +115,7 @@ __prompt() {
         echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/$HOME/$H}\007"
         ;;
     esac
-    PS1="$FAIL$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}"
+    PS1="$FAIL$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}$DEPLOY"
     if [ "$PS1_GIT" == 1 ]; then
         __git_ps1 "$PS1" "$PROMPT"
     else
