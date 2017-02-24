@@ -17,6 +17,7 @@
 	incoming = log ..@{upstream}
 	outgoing = log @{push}..
 	reword = commit --amend --only
+	nudge = !git pull --rebase && git push
 [push]
 	default = simple
 	followtags = true
