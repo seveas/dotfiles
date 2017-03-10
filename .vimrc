@@ -90,6 +90,9 @@ if &term =~ '^screen'
     execute "set t_Co=8"
 endif
 
+" Keep swapfiles out of the way
+set directory=$HOME/.local/share/vim/swap//
+
 if has('persistent_undo')
     set undodir=$HOME/.local/share/vim/undo
     set undolevels=5000
