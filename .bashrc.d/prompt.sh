@@ -22,6 +22,8 @@ EXIT_CODES[75]=EX_TEMPFAIL
 EXIT_CODES[76]=EX_PROTOCOL
 EXIT_CODES[77]=EX_NOPERM
 EXIT_CODES[78]=EX_CONFIG
+# From the timeout command
+EXIT_CODES[124]=TIMEOUT
 # Posix shells
 EXIT_CODES[126]=command-not-executable
 EXIT_CODES[127]=command-not-found

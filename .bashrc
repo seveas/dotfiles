@@ -39,7 +39,7 @@ vcsh_update() {
 
             # Don't fetch via ssh unless we have an agent
             case "$url,$SSH_AUTH_SOCK" in
-                http*) vcsh $repo fetch ;;
+                http*) timeout 5 vcsh $repo fetch || echo "Unable to update dotfiles" >&2 ;;
                 *,)    ;;
                 *)     vcsh $repo fetch
             esac
