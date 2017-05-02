@@ -3,6 +3,10 @@ import atexit
 import readline
 import datetime, os, sys, re, time, socket
 from pprint import pprint
+try:
+    from whelk import shell
+except ImportError:
+    pass
 
 sys.displayhook = pprint
 
