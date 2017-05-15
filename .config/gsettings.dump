@@ -18,6 +18,7 @@ org.gnome.desktop.input-sources sources [('xkb', 'us+euro'), ('xkb', 'us')]
 org.gnome.desktop.input-sources xkb-options ['compose:ralt', 'caps:none', 'altwin:left_meta_win']
 org.gnome.desktop.lockdown disable-user-switching true
 org.gnome.desktop.peripherals.mouse natural-scroll false
+org.gnome.desktop.privacy remember-recent-files false
 org.gnome.desktop.wm.keybindings show-desktop ['<Super>d']
 org.gnome.desktop.wm.keybindings switch-input-source ['']
 org.gnome.desktop.wm.keybindings switch-input-source-backward ['']
