@@ -15,14 +15,18 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('-r', '--release', default=get_release())
     p.add_argument('-l', '--locale', default='en')
+    p.add_argument('-u', '--url', default=False, action='store_true')
     p.add_argument('section', metavar='SECTION', nargs='?')
     p.add_argument('page', metavar='PAGE')
     args = p.parse_args()
-    section, page = get_manpage(args.release, args.locale, args.section, args.page)
+    section, page, url = get_manpage(args.release, args.locale, args.section, args.page)
     if not page:
         msg = ' in section %s' % args.section if args.section else ''
         print("No manual entry for %s%s" % (args.page, msg), file=sys.stderr)
         sys.exit(1)
+    if args.url:
+        print(url.replace('.gz', ''))
+        sys.exit(0)
     fd, path = tempfile.mkstemp(prefix='%s.%s.' % (args.page, section))
     try:
         os.write(fd, page)
@@ -51,8 +55,8 @@ def get_manpage(release, locale, section, name):
         url = template.format(**locals())
         resp = requests.get(url)
         if resp.status_code == 200:
-            return section, resp.content
-    return None, None
+            return section, resp.content, url
+    return None, None, None
 
 if __name__ == '__main__':
     main()
