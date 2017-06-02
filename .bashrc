@@ -41,7 +41,7 @@ vcsh_update() {
             case "$url,$SSH_AUTH_SOCK" in
                 http*) timeout 5 vcsh $repo fetch || echo "Unable to update dotfiles" >&2 ;;
                 *,)    ;;
-                *)     vcsh $repo fetch
+                *)     timeout 5 vcsh $repo fetch || echo "Unable to update dotfiles" >&2 ;;
             esac
 
         fi
