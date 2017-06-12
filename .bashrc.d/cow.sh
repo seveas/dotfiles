@@ -4,4 +4,3 @@ cow() {
     cow="$(ls /usr/share/cowsay/cows | shuf -n 1)"
     fortune -s | cowsay -n -f "$cow"
 }
-cow
