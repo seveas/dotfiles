@@ -22,6 +22,9 @@
 /home/*/.ssh/control/
 
 /home/dennis/booking/main
+/home/dennis/Android/Sdk
+/home/dennis/.gradle/
+/home/dennis/android/android-studio/
 
 /home/dennis/code/linux
 backup.ab
