@@ -1,6 +1,6 @@
 export PYTHONPATH=/home/dennis/lib/python
 export PYTHONSTARTUP=$HOME/.startup.py
-PYTHONS=(
+PYTHONS="
     /usr/local/bin/blue-python3.5
     /usr/local/bin/blue-python3.4
     /usr/local/bin/blue-python3.6
@@ -11,10 +11,9 @@ PYTHONS=(
     /bin/python2
     /usr/bin/python
     /bin/python
-)
+"
 python() {(
     for py in $PYTHONS; do
         test -x $py && exec $py "$@"
-        break
     done
 )}
