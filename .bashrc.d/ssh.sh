@@ -1,9 +1,5 @@
 #!/bin/bash -- to trick vim...
 
-if [ -e /etc/hosts.booking ]; then
-    complete -W "$(</etc/hosts.booking)" ssh
-fi
-
 not_with_sudo
 
 # Make sure the path for controlfiles exists
@@ -23,7 +19,7 @@ fi
 if [ -d ~/.ssh ]; then
     if [ ! -e ~/.ssh/config ]; then . ~/.bashrc.d/templates.sh; fi
     if [ ! -e ~/.ssh/known_hosts ]; then touch ~/.ssh/known_hosts; fi
-    for x in `(sed -e 's/[, ].*//' ~/.ssh/known_hosts; awk '/^Host [^*?]+$/{print $2}' ~/.ssh/config) | grep -v lom.booking.com | sort -r`; do
+    for x in `(sed -e 's/[, ].*//' ~/.ssh/known_hosts; awk '/^Host [^*?]+$/{print $2}' ~/.ssh/config) | sort -r`; do
         # Don't override commands
         if ! type $x > /dev/null 2>&1; then
             alias $x="ssh $x"
