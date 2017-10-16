@@ -25,6 +25,7 @@ VCSH=
 vcsh_update() {
     not_with_sudo
     unset vcsh
+    which vcsh >/dev/null 2>&1 || alias vcsh=~/bin/vcsh
 
     # Don't try this if we're not connected
     if type nmcli &>/dev/null && [ $(nmcli n c) != 'full' ]; then return; fi
@@ -60,6 +61,7 @@ vcsh_update() {
     if [ -n "$VCSH" ]; then
         VCSH="\[\033[31;1m\]$VCSH\[\033[0m\] "
     fi
+    unalias vcsh 2>/dev/null
 }
 
 # The pre phase sets up proxies
