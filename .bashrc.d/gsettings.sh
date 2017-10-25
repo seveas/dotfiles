@@ -8,7 +8,3 @@ test ~/.config/gsettings.dump -nt ~/.config/gsettings.dump.ts && {
 
     touch ~/.config/gsettings.dump.ts
 }
-test ~/.config/dconf.dump -nt ~/.config/dconf.dump.ts && {
-    dconf load / < ~/.config/dconf.dump
-    touch ~/.config/dconf.dump.ts
-}
