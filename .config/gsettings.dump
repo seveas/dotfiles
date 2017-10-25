@@ -6,11 +6,15 @@ org.gnome.Charmap group-by 'block'
 org.gnome.desktop.input-sources sources [('xkb', 'us+euro'), ('xkb', 'us')]
 org.gnome.desktop.input-sources xkb-options ['compose:ralt', 'caps:none', 'altwin:left_meta_win']
 org.gnome.desktop.lockdown disable-user-switching true
+org.gnome.desktop.notifications show-in-lock-screen false
 org.gnome.desktop.peripherals.mouse natural-scroll false
+org.gnome.desktop.peripherals.touchpad natural-scroll false
+org.gnome.desktop.privacy remember-app-usage false
 org.gnome.desktop.privacy remember-recent-files false
 org.gnome.desktop.screensaver lock-delay uint32 300
 org.gnome.desktop.screensaver lock-enabled true
 org.gnome.desktop.session idle-delay uint32 300
+org.gnome.desktop.wm.keybindings panel-run-dialog ['<Super>r']
 org.gnome.desktop.wm.keybindings show-desktop ['<Super>d']
 org.gnome.desktop.wm.keybindings switch-input-source ['']
 org.gnome.desktop.wm.keybindings switch-input-source-backward ['']
@@ -27,4 +31,7 @@ org.gnome.evolution.shell buttons-visible false
 org.gnome.evolution.shell toolbar-visible false
 org.gnome.gedit.preferences.editor wrap-mode 'none'
 org.gnome.settings-daemon.plugins.media-keys screensaver '<Super>l'
+org.gnome.settings-daemon.plugins.media-keys terminal '<Super>t'
 org.gnome.settings-daemon.plugins.power critical-battery-action 'suspend'
+org.gnome.shell favorite-apps ['firefox.desktop', 'evolution.desktop', 'org.gnome.Nautilus.desktop', 'terminator.desktop']
+org.gnome.shell.extensions.dash-to-dock dock-fixed false
