@@ -19,11 +19,16 @@ org.gnome.desktop.input-sources xkb-options ['compose:ralt', 'caps:none', 'altwi
 org.gnome.desktop.lockdown disable-user-switching true
 org.gnome.desktop.peripherals.mouse natural-scroll false
 org.gnome.desktop.privacy remember-recent-files false
+org.gnome.desktop.screensaver lock-delay uint32 300
+org.gnome.desktop.screensaver lock-enabled true
+org.gnome.desktop.session idle-delay uint32 300
 org.gnome.desktop.wm.keybindings show-desktop ['<Super>d']
 org.gnome.desktop.wm.keybindings switch-input-source ['']
 org.gnome.desktop.wm.keybindings switch-input-source-backward ['']
 org.gnome.desktop.wm.keybindings toggle-maximized ['<Alt>m']
+org.gnome.evolution.calendar editor-show-timezone true
 org.gnome.evolution.calendar use-24hour-format true
+org.gnome.evolution.mail composer-show-bcc true
 org.gnome.evolution.mail composer-show-cc true
 org.gnome.evolution.mail composer-wrap-quoted-text-in-replies false
 org.gnome.evolution.mail prompt-on-composer-mode-switch false
