@@ -32,6 +32,7 @@ for item in $(expand_host $(hostname -f)); do
         . ~/.bashrc.d/local/$item.$phase.sh
     fi
 done
+type ip &>/dev/null || ip() { ifconfig; }
 for ip in $(ip addr list  | sed -ne 's/.*inet6\? \([^ /]*\).*/\1/p'); do
     for item in $(expand_ip $ip); do
         if [ -e ~/.bashrc.d/local/$item.$phase.sh ]; then
@@ -39,3 +40,8 @@ for ip in $(ip addr list  | sed -ne 's/.*inet6\? \([^ /]*\).*/\1/p'); do
         fi
     done
 done
+type ip 2>&1 | grep -q function && unset ip
+
+if [ -e ~/.bashrc.d/local/$(uname).$phase.sh ]; then
+    . ~/.bashrc.d/local/$(uname).$phase.sh
+fi

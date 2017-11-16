@@ -3,6 +3,12 @@
 
 # Sanity :)
 shopt -s checkwinsize no_empty_cmd_completion histappend extglob globstar
+if [ -e /usr/local/bin/gls ]; then
+    for cmd in /usr/local/bin/g*; do
+        cmdx=${cmd#/usr/local/bin/g}
+        eval "$cmdx() { $cmd \"\$@\"; }"
+    done
+fi
 
 # While initializing, make HOME point to where we are, this allows the trick in
 # bashrc.d/sudo.sh to work
