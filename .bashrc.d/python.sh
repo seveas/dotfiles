@@ -13,3 +13,5 @@ python() {(
         test -x $py && exec $py "$@"
     done
 )}
+
+which pip3 &>/dev/null || alias pip3='python3 -mpip'
