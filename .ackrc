@@ -1,1 +1,2 @@
 --pager=less -R$LESS
+--type-set=puppet:ext:pp
