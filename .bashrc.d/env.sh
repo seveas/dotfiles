@@ -16,3 +16,4 @@ export DEBEMAIL=$EMAIL
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 eval $(dircolors ~/.config/dircolors)
 export LS_COLORS
+export DIRENV_LOG_FORMAT=

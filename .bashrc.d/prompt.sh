@@ -54,6 +54,8 @@ EXIT_CODES[155]=SIGPROF
 EXIT_CODES[157]=SIGIO
 EXIT_CODES[158]=SIGPWR
 
+type direnv &>/dev/null || direnv() { : ; }
+
 signal() {
     if [ -n "${EXIT_CODES[$1]}" ]; then
         echo ${EXIT_CODES[$1]}
@@ -130,5 +132,6 @@ __prompt() {
     else
         PS1="$PS1$PROMPT"
     fi
+    eval "$(direnv export bash)"
 }
 PROMPT_COMMAND=__prompt

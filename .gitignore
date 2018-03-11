@@ -55,6 +55,7 @@
 .build
 .bzr*
 .coverage
+.envrc
 .gdb_history
 .hg
 .ipynb_checkpoints
