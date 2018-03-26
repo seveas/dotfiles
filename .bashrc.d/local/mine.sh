@@ -27,7 +27,7 @@ expand_host() {
   ) | tac
 }
 
-for item in $(expand_host $(hostname -f)); do
+for item in $(hostname -s) $(expand_host $(hostname -f)); do
     if [ -e ~/.bashrc.d/local/$item.$phase.sh ]; then
         . ~/.bashrc.d/local/$item.$phase.sh
     fi
