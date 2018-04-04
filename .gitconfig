@@ -9,7 +9,7 @@
 	ui = auto
 [alias]
 	hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s' --all
-	nevermind = reset --hard
+	nevermind = reset --hard @{u}
 	minitrue = rebase -i
 	force-push = push --force-with-lease
 	fast-forward = merge --ff-only
@@ -20,6 +20,7 @@
 	nudge = !git pull --rebase && git push
 	summary = rev-list -n1 --date=short --pretty='tformat:%h ("%s", %ad)'
 	upush = !git push -u origin $(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+	yolo = !git commit -a --amend --no-edit && git push -f
 [push]
 	default = simple
 	followtags = true
@@ -37,3 +38,5 @@
 	autosquash = true
 [commit]
 	verbose = true
+[include]
+	path = ~/.local-gitconfig
