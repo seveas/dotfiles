@@ -1,6 +1,7 @@
 export PYTHONPATH=/home/dennis/lib/python
 export PYTHONSTARTUP=$HOME/.startup.py
 PYTHONS="
+    /usr/local/bin/python3
     /usr/bin/python3
     /bin/python3
     /usr/bin/python2
