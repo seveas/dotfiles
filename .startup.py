@@ -8,7 +8,15 @@ try:
 except ImportError:
     pass
 
-sys.displayhook = pprint
+def displayhook(value):
+    pprint(value)
+    __builtins__._ = value
+sys.displayhook = displayhook
+
+def excepthook(typ, val, tb):
+    sys.__excepthook__(typ, val, tb)
+    import debugme
+sys.excepthook = excepthook
 
 histfile = os.path.join(os.environ["HOME"], ".python_history")
 try:
