@@ -1,0 +1,5 @@
+*.pl diff=perl
+*.py diff=python
+*.c diff=cpp
+*.rb diff=ruby
+*.ru diff=ruby
