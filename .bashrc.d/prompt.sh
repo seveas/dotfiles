@@ -133,17 +133,6 @@ __prompt() {
             ;;
         esac
     fi
-    DEPLOY=
-    if [ -e .deploy ]; then
-        color=32
-        if [ -e .git/git-deploy ]; then
-            color=33
-            if [ $(stat --format %U .git/git-deploy/start) != $USER ]; then
-                color=31
-            fi
-        fi
-        DEPLOY=" \[\033[$color;1m\][DEPLOY]\[\033[0m\]"
-    fi
     history -a
     H='~'
     case "$TERM" in
@@ -151,7 +140,7 @@ __prompt() {
         echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/$HOME/$H}\007"
         ;;
     esac
-    PS1="$FAIL$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}$DEPLOY"
+    PS1="$FAIL$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}"
     if [ "$PS1_GIT" == 1 ]; then
         __git_ps1 "$PS1" "$PROMPT"
     else
