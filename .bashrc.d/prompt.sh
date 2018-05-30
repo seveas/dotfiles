@@ -94,20 +94,45 @@ case "$SUDO_USER,$USER" in
 esac
 
 __prompt() {
-    rc=$?
-    case $rc in
-    0)
+    pipestatus=("${PIPESTATUS[@]}")
+    if [ ${#pipestatus[@]} -ne 1 ]; then
         FAIL=
-        ;;
-    1)
-        FAIL="\[\033[31;1m\]! \[\033[0m\]"
-        ;;
-    *)
-        if [ -n "${EXIT_CODES[$rc]}" ]; then
-            rc="$rc,${EXIT_CODES[$rc]}"
+        do_fail=n
+        for rc in ${pipestatus[@]}; do
+        case $rc in
+            0)
+                FAIL="$FAIL 0"
+                ;;
+            *)
+                if [ -n "${EXIT_CODES[$rc]}" ]; then
+                    rc="$rc,${EXIT_CODES[$rc]}"
+                fi
+                FAIL="$FAIL \[\033[31;1m\]$rc\[\033[0m\]"
+                do_fail=y
+                ;;
+            esac
+        done
+        if [ $do_fail = "n" ]; then
+            FAIL=
+        else
+            FAIL="\[\033[31;1m\]!(\[\033[0m\]${FAIL:1}\[\033[31;1m\]) \[\033[0m\]"
         fi
-        FAIL="\[\033[31;1m\]!($rc) \[\033[0m\]"
-    esac
+    else
+        case $pipestatus in
+        0)
+            FAIL=
+            ;;
+        1)
+            FAIL="\[\033[31;1m\]! \[\033[0m\]"
+            ;;
+        *)
+            if [ -n "${EXIT_CODES[$pipestatus]}" ]; then
+                pipestatus="$pipestatus,${EXIT_CODES[$pipestatus]}"
+            fi
+            FAIL="\[\033[31;1m\]!($pipestatus) \[\033[0m\]"
+            ;;
+        esac
+    fi
     DEPLOY=
     if [ -e .deploy ]; then
         color=32
