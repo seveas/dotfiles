@@ -19,3 +19,4 @@ alias ldapdecode='awk '\''BEGIN{FS=":: ";c="base64 -d"}{if(/\w+:: /) {print $2 |
 alias puppet="sudo puppet agent -t"
 alias my-puppet="sudo puppet agent -t --environment=dkaarsemaker"
 alias ßh=ssh
+alias strace-f='strace -f -qq -esignal=!SIGCHLD'
