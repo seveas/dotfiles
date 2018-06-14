@@ -17,3 +17,4 @@ export DEBEMAIL=$EMAIL
 eval $(dircolors ~/.config/dircolors)
 export LS_COLORS
 export DIRENV_LOG_FORMAT=
+export TIME_STYLE=long-iso
