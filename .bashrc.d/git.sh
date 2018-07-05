@@ -7,3 +7,5 @@ gi() {
         command gi "$@"
     fi
 }
+
+which git-hub &>/dev/null && export GITHUB_API_TOKEN=$(git hub config token)
