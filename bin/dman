@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import argparse
 import csv
@@ -27,18 +27,20 @@ def main():
     if args.url:
         print(url.replace('.gz', ''))
         sys.exit(0)
-    fd, path = tempfile.mkstemp(prefix='%s.%s.' % (args.page, section))
+    fd, path = tempfile.mkstemp(prefix='%s.%s.' % (args.page, section), suffix='.gz')
     try:
         os.write(fd, page)
-        shell.man('-l', path, redirect=False)
+        shell.man(path, redirect=False)
     finally:
         os.unlink(path)
 
 def get_release():
     if not os.path.exists(distinfo):
+        if not hasattr(shell, 'lsb_release'):
+            return 'bionic'
         distro, release = shell.lsb_release('-cis').stdout.splitlines()
         if distro != 'Ubuntu':
-            return 'xenial'
+            return 'bionic'
         return release
     with open(distinfo) as fd:
         releases = list(csv.DictReader(fd))
