@@ -31,22 +31,3 @@ if [ -d ~/.ssh ]; then
     done
 fi
 
-# Wrap ssh for yubikeys
-if [ -e ~/.ssh/2fa_hosts ]; then
-    ssh() {
-        # Parse the command line to extract the hostname we connect to
-        opts=46AaCcfgKkMNnqsTtVvXxYyb:c:D:E:e:F:I:i:J:L:l:m:O:o:p:Q:R:S:W:w
-        args=$(getopt $opts $*)
-        if [ $? = 0 ]; then
-            (
-                set -- $args
-                for i; do
-                    if [ "$i" = '--' ]; then shift; break; fi
-                    shift;
-                done
-                grep -q "^$1$" ~/.ssh/2fa_hosts && osascript -e 'tell application "yubiswitch" to KeyOn'
-            )
-        fi
-        command ssh "$@"
-    }
-fi
