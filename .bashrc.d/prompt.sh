@@ -7,6 +7,12 @@ if declare -f __git_ps1 > /dev/null; then
 fi
 declare -A EXIT_CODES
 
+if [ -n "$VTE_VERSION" ]; then
+    source /etc/profile.d/vte*.sh
+else
+    __vte_osc7(){ :; }
+fi
+
 EXIT_CODES[64]=EX_USAGE
 EXIT_CODES[65]=EX_DATAERR
 EXIT_CODES[66]=EX_NOINPUT
@@ -138,6 +144,7 @@ __prompt() {
     case "$TERM" in
     xterm*|rxvt*)
         echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/$HOME/$H}\007"
+        __vte_osc7
         ;;
     esac
     PS1="$FAIL$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}"

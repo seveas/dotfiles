@@ -7,7 +7,7 @@ alias h='history 23'
 alias bitch,=sudo
 alias anon='export HISTFILE=/dev/null'
 alias whitespacenazi="ack ' +$'"
-alias random-folder='ls -d */ | sort --random-sort | head -n1'
+alias random-folder='ls -d */ | sort --random-sort | head -n1 | tee /dev/stderr'
 alias hunter2='apg -a1 -m24 -x36 -n1'
 alias aton='python -c "import sys,socket,struct; print(struct.unpack(\"!I\", socket.inet_aton(sys.argv[1]))[0])"'
 alias ntoa='python -c "import sys,socket,struct; print(socket.inet_ntoa(struct.pack(\"!I\", int(sys.argv[1]))))"'
