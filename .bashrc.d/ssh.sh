@@ -28,6 +28,10 @@ if [ -d ~/.ssh ]; then
         if ! type $y > /dev/null 2>&1; then
             alias $y="ssh $x"
         fi
+        y=${x/-cp1-prd*/}
+        if ! type $y > /dev/null 2>&1; then
+            alias $y="ssh $x"
+        fi
     done
 fi
 
