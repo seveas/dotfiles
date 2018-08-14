@@ -77,11 +77,6 @@ unset vcsh_update
 for f in ~/.bashrc.d/*.sh; do
     . $f
 done
-if [ -e ~/.dotfiles/.bashrc.d ]; then
-    for f in ~/.dotfiles/.bashrc.d/*.sh; do
-        . $f
-    done
-fi
 phase=post
 . ~/.bashrc.d/local/mine.sh
 HOME="$OLDHOME"
