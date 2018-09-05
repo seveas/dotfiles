@@ -7,3 +7,5 @@ export GIT_CONFIG_NOSYSTEM=1
 
 . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
 eval "$(rbenv init -)"
+export GITHUB_API_TOKEN=$(git hub config token)
+export GITHUB_TOKEN=$GITHUB_API_TOKEN
