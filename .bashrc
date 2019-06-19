@@ -4,6 +4,7 @@
 # Sanity :)
 shopt -s checkwinsize no_empty_cmd_completion histappend extglob globstar
 if [ -e /usr/local/bin/gls ]; then
+    unalias ls &>/dev/null
     for cmd in /usr/local/bin/g*; do
         cmdx=${cmd#/usr/local/bin/g}
         eval "$cmdx() { $cmd \"\$@\"; }"
