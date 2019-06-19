@@ -4,9 +4,9 @@ not_with_sudo
 
 # Make sure the path for controlfiles exists
 if [ -e ~/.ssh/control ] && [ ! -e ~/.shc ]; then
-  mv ~/.ssh/control ~/.shc
+    mv ~/.ssh/control ~/.shc
 else
-  mkdir -p -m700 ~/.shc
+    mkdir -p -m700 ~/.shc
 fi
 
 # Steal SSH agent unless this one works
@@ -22,19 +22,25 @@ fi
 # Make lots of aliases
 if [ -d ~/.ssh ]; then
     if [ ! -e ~/.ssh/config ]; then . ~/.bashrc.d/templates.sh; fi
-    if [ ! -e ~/.ssh/known_hosts ]; then touch ~/.ssh/known_hosts; fi
-    for x in `(sed -e 's/[, ].*//' ~/.ssh/known_hosts; awk '/^Host [^*?]+$/{print $2}' ~/.ssh/config) | sort -r`; do
-        # Don't override commands
-        if ! type $x > /dev/null 2>&1; then
-            alias $x="ssh $x"
-        fi
-        y=${x/.*/}
-        if ! type $y > /dev/null 2>&1; then
-            alias $y="ssh $x"
-        fi
-        y=${x/-cp1-prd*/}
-        if ! type $y > /dev/null 2>&1; then
-            alias $y="ssh $x"
+    grep '^Host' ~/.ssh/config | tac | while read key value; do
+        if [ $key = "HostName" ]; then
+            last_host=$value
+        else
+            for host in $value; do
+                hostname=${last_host:-$host}
+                case $host in
+                    *"*"*)
+                        ;;
+                    *.*)
+                        alias $host="ssh $hostname"
+                        alias ${host/.*/}="ssh $hostname"
+                        ;;
+                    *)
+                        alias $host="ssh $hostname"
+                        ;;
+                  esac
+            done
+            unset last_host
         fi
     done
 fi
