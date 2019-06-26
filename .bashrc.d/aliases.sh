@@ -16,7 +16,5 @@ alias lscg=systemd-cgls
 alias dig='dig +noall +answer'
 alias ldapsearch='ldapsearch -o ldif-wrap=no -x -LLL'
 alias ldapdecode='awk '\''BEGIN{FS=":: ";c="base64 -d"}{if(/\w+:: /) {print $2 |& c; close(c,"to"); c |& getline $2; close(c); printf("%s:: \"%s\"\n", $1, $2); next} print $0 }'\'''
-alias puppet="sudo puppet agent -t"
-alias my-puppet="sudo puppet agent -t --environment=dkaarsemaker"
 alias ßh=ssh
 alias strace-f='strace -f -qq -esignal=!SIGCHLD'
