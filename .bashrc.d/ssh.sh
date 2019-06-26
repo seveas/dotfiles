@@ -22,6 +22,8 @@ fi
 # Make lots of aliases
 if [ -d ~/.ssh ]; then
     if [ ! -e ~/.ssh/config ]; then . ~/.bashrc.d/templates.sh; fi
+    set +m
+    shopt -s lastpipe
     grep '^Host' ~/.ssh/config | tac | while read key value; do
         if [ $key = "HostName" ]; then
             last_host=$value
@@ -43,5 +45,6 @@ if [ -d ~/.ssh ]; then
             unset last_host
         fi
     done
+    shopt -u lastpipe
+    set -m
 fi
-
