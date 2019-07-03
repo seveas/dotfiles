@@ -53,3 +53,5 @@
 	insteadof = https://github.com
 [fetch "fsck"]
 	missingSpaceBeforeDate = ignore
+[diff]
+	noprefix = true
