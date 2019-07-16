@@ -51,3 +51,5 @@
 	defaultRemote = origin
 [url "ssh://git@github.com"]
 	insteadof = https://github.com
+[fetch "fsck"]
+	missingSpaceBeforeDate = ignore
