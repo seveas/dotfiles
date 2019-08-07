@@ -3,12 +3,15 @@
 
 # Sanity :)
 shopt -s checkwinsize no_empty_cmd_completion histappend extglob globstar
-if [ -e /usr/local/bin/gls ]; then
-    unalias ls &>/dev/null
-    for cmd in /usr/local/bin/g*; do
-        cmdx=${cmd#/usr/local/bin/g}
-        eval "$cmdx() { $cmd \"\$@\"; }"
-    done
+
+# More sanity: gnu tools instead of some broken/missing bsd ones on osx
+if [ -e /usr/local/bin/gfind ]; then
+    alias find=gfind
+    alias stat=gstat
+    alias readlink=greadlink
+    alias dircolors=gdircolors
+    unalias ls 2>/dev/null
+    eval 'ls() { gls "$@"; }'
 fi
 
 # While initializing, make HOME point to where we are, this allows the trick in
