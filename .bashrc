@@ -8,6 +8,7 @@ shopt -s checkwinsize no_empty_cmd_completion histappend extglob globstar
 if [ -e /usr/local/bin/gfind ]; then
     alias find=gfind
     alias stat=gstat
+    alias mv=gmv
     alias readlink=greadlink
     alias dircolors=gdircolors
     unalias ls 2>/dev/null
