@@ -102,3 +102,5 @@ endif
 nmap S :%s//g<left><left>
 
 vmap <BS> x
+
+set autowrite
