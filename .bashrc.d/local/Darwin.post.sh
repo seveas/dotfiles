@@ -9,3 +9,4 @@ export GIT_CONFIG_NOSYSTEM=1
 eval "$(rbenv init -)"
 export GITHUB_API_TOKEN=$(git hub config token)
 export GITHUB_TOKEN=$GITHUB_API_TOKEN
+ulimit -Sn 20000
