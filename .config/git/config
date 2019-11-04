@@ -55,3 +55,5 @@
 	missingSpaceBeforeDate = ignore
 [diff]
 	noprefix = true
+[protocol]
+	version = 2
