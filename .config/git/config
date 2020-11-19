@@ -20,8 +20,9 @@
 	summary = rev-list -n1 --date=short --pretty='tformat:%h ("%s", %ad)'
 	upush = !git push -u origin $(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 	yolo = !git commit -a --amend --no-edit && git push -f && git hub wait-for-ci
-	yolo-rebase = !git commit -a --amend --no-edit && git fetch && git rebase $(git rev-parse --symbolic-full-name --abbrev-ref origin/HEAD) && git push -f && git hub wait-for-ci
-	new-branch = !sh -c \"git fetch --all && git checkout --no-track -b $1 $(git rev-parse --symbolic-full-name --abbrev-ref origin/HEAD)\"
+	yolo-rebase = !git commit -a --amend --no-edit && git fetch && git rebase $(git remote-default-branch origin) && git push -f && git hub wait-for-ci
+	new-branch = !sh -c \"git fetch --all && git checkout --no-track -b $1 origin/$(git remote-default-branch origin)\"
+	remote-default-branch = !sh -c \"git ls-remote --symref $1  HEAD | awk '/^ref/{print \\$2}' | sed -e 's!refs/heads/!!'\"
 [push]
 	default = simple
 	followtags = true
