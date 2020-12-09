@@ -5,7 +5,7 @@
 shopt -s checkwinsize no_empty_cmd_completion histappend extglob globstar
 
 # More sanity: gnu tools instead of some broken/missing bsd ones on osx
-if [ -e /usr/local/bin/gfind ]; then
+if [ -e /usr/local/bin/gmv ]; then
     alias find=gfind
     alias stat=gstat
     alias mv=gmv

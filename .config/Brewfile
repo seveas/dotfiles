@@ -1,4 +1,5 @@
 tap "heroku/brew"
+tap "homebrew/cask"
 
 [
     'awscli',
@@ -8,7 +9,8 @@ tap "heroku/brew"
     'coreutils',
     'cowsay',
     'direnv',
-    'docker',
+    'findutils',
+    'gh',
     'git',
     'git-lfs',
     'go',
@@ -27,7 +29,6 @@ tap "heroku/brew"
     'redis',
     'rust',
     'shellcheck',
-    'shellcheck',
     'tmux',
     'vcsh',
     'watch',
@@ -35,3 +36,5 @@ tap "heroku/brew"
     'yamllint',
     'yq',
 ].each do |pkg| brew pkg end
+
+cask 'bitbar'

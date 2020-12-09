@@ -3,7 +3,6 @@ export LC_TIME=nl_NL.UTF-8
 # I don't want the xcode-enforced credential helper
 export GIT_CONFIG_NOSYSTEM=1
 
-. /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
 eval "$(rbenv init -)"
 export GITHUB_API_TOKEN=$(git hub config token)
 export GITHUB_TOKEN=$GITHUB_API_TOKEN
