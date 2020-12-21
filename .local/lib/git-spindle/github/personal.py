@@ -144,7 +144,7 @@ query MyPullRequests
                 if name not in names:
                     runs.append(FakeCheckRun(name=name))
             runs.sort(key=lambda run: run.name)
-            mnl = max([len(run.name) for run in runs])
+            mnl = max([len(run.name) for run in runs] + [0])
             for run in runs:
                 ts = '     '
                 symbol = '  '
