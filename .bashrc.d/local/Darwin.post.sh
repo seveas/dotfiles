@@ -8,3 +8,6 @@ export GITHUB_API_TOKEN=$(git hub config token)
 export GITHUB_TOKEN=$GITHUB_API_TOKEN
 ulimit -Sn 20000
 alias rot13='tr A-Za-z N-ZA-Mn-za-m'
+
+# I want a functional, non-littering, sed -i
+export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH

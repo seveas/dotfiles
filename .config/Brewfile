@@ -13,6 +13,7 @@ tap "homebrew/cask"
     'gh',
     'git',
     'git-lfs',
+    'gnu-sed',
     'go',
     'gron',
     'heroku',
