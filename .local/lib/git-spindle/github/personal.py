@@ -1,7 +1,7 @@
 from gitspindle import GitSpindlePlugin, command
-from gitspindle.ansi import *
 from pprint import pprint
 import github3.checks
+from ansi.colour import *
 
 import collections
 import datetime
@@ -107,7 +107,7 @@ query MyPullRequests
                     s = self.check_map.get(check.status, self.check_map.get(check.conclusion))
                     cs = s if self.check_priority.index(s) < self.check_priority.index(cs) else cs
             status += cs
-            print('[%-*s]  %s  %-*s %s' % (mrl, ident, status, msl, pr.title, wrap(pr.url, attr.faint)))
+            print('[%-*s]  %s  %-*s %s' % (mrl, ident, status, msl, pr.title, fx.faint(pr.url)))
 
     @command
     def wait_for_ci(self, opts):
@@ -129,7 +129,7 @@ query MyPullRequests
                 remote_branch = 'refs/heads/%s' % remote_branch.split('/', 3)[3]
                 remote_sha = self.git('ls-remote', 'origin', remote_branch).stdout.strip()
                 if remote_sha and branch != remote_sha.split()[0]:
-                    print(wrap("Your local branch is not up-to-date with GitHub", fgcolor.red, attr.bright))
+                    print(fg.brightred("Your local branch is not up-to-date with GitHub"))
         repo = self.repository(opts)
         branch_data = repo.branch(repo.default_branch).as_dict()
         required = branch_data['protection']['required_status_checks']['contexts']
@@ -177,7 +177,7 @@ query MyPullRequests
                     ts = '%02d:%02d' % (td/60, td%60)
                 text = "%s %s %-*s %s" % (symbol, ts, mnl, run.name, run.details_url)
                 if run.name.startswith('puppet-integration'):
-                    text = wrap(text, attr.faint)
+                    text = fx.faint(text)
                 print(text)
 
             lines = len(runs)+1
