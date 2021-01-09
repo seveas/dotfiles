@@ -29,7 +29,7 @@ class GithHub(GitSpindlePlugin):
         'SUCCESS': '✅',
         'TIMED_OUT': '🛑',
     }
-    check_priority = ['🛑', '❌', '⚙️ ' '⏳', '🔵', '😕', '✅', '❗']
+    check_priority = ['🛑', '❌', '⚙️ ', '⏳', '🔵', '😕', '✅', '❗']
 
     def __init__(self):
         self.graphql_method("get_my_prs",
@@ -86,14 +86,18 @@ query MyPullRequests
         mrl = 0
         msl = 0
         prs = self.get_my_prs().viewer.pullRequests
-        if prs:
-            print("              ⛙ 👀✔️ ")
         for pr in prs:
             if pr.repository.owner.login != 'github':
                 continue
             ident = "%s/%d" % (pr.repository.name, pr.number)
             mrl = mrl if len(ident) < mrl else len(ident)
             msl = msl if len(pr.title) < msl else len(pr.title)
+        if prs:
+            print(" " * mrl + "    ⛙ 👀✔️ ")
+        for pr in prs:
+            if pr.repository.owner.login != 'github':
+                continue
+            ident = "%s/%d" % (pr.repository.name, pr.number)
             status = self.mergeable_map.get(pr.mergeable, self.confusion)
             status += self.review_map.get(pr.reviewDecision, self.confusion)
             suites = [suite for suite in pr.commits[0].commit.checkSuites if suite.checkRuns]
