@@ -2,6 +2,8 @@ from gitspindle import GitSpindlePlugin, command
 from pprint import pprint
 import github3.checks
 from ansi.colour import *
+import ansi.cursor
+import ansi.iterm
 
 import collections
 import datetime
@@ -140,7 +142,7 @@ query MyPullRequests
         while True:
             runs = list(commit.check_runs())
             now = datetime.datetime.now().astimezone(datetime.timezone.utc)
-            print(cursor_up(lines))
+            print(ansi.cursor.up(lines))
             mnl = 0
             pending = False
             names = [x.name for x in runs]
@@ -184,6 +186,9 @@ query MyPullRequests
             if not (pending and opts['--wait']):
                 break
             time.sleep(5)
+
+        if opts['--wait']:
+            print(ansi.iterm.notification("CI runs done for %s/%s" % (repo.name, branch)))
 
         if failing:
             sys.exit(1)
