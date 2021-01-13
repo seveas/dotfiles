@@ -11,7 +11,6 @@ export HISTSIZE=10000
 export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S: "
 export PERL5LIB=~/perl/lib/perl5:$PERL5LIB
 export EMAIL=dennis@kaarsemaker.net
-export GOPATH=~/go
 export DEBEMAIL=$EMAIL
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 eval $(dircolors ~/.config/dircolors)
