@@ -152,20 +152,22 @@ query MyPullRequests
             runs.sort(key=lambda run: run.name)
             mnl = max([len(run.name) for run in runs] + [0])
             for run in runs:
+                relevant = not run.name.startswith(('puppet-integration-ops-default','puppet-integration-base-image'))
                 ts = '     '
                 symbol = '  '
                 if run.name in required:
                     symbol = '📍'
                 if run.status == 'expected':
                     symbol += '❓'
-                    pending = True
+                    if relevant:
+                        pending = True
                 elif run.status == 'queued':
                     symbol += '⌛'
-                    if not run.name.startswith('puppet-integration'):
+                    if relevant:
                         pending = True
                 elif run.status == 'in_progress':
                     symbol += '⚙️ '
-                    if not run.name.startswith('puppet-integration'):
+                    if relevant:
                         pending = True
                     td = (now-run.started_at).seconds
                     ts = '%02d:%02d' % (td/60, td%60)
@@ -174,11 +176,12 @@ query MyPullRequests
                         symbol += '✅' 
                     else:
                         symbol += '❌'
-                        failing = True
+                        if relevant:
+                            failing = True
                     td = (run.completed_at - run.started_at).seconds
                     ts = '%02d:%02d' % (td/60, td%60)
                 text = "%s %s %-*s %s" % (symbol, ts, mnl, run.name, run.details_url)
-                if run.name.startswith('puppet-integration'):
+                if not relevant:
                     text = fx.faint(text)
                 print(text)
 
