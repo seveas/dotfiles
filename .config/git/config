@@ -24,6 +24,8 @@
 	new-branch = !sh -c \"git fetch --all && git checkout --no-track -b $1 origin/$(git remote-default-branch origin)\"
 	remote-default-branch = !sh -c \"git ls-remote --symref $1  HEAD | awk '/^ref/{print \\$2}' | sed -e 's!refs/heads/!!'\"
 	rebase-main = !sh -c \"git rebase origin/$(git remote-default-branch origin)\"
+	rename-branch = !sh -c \"git branch -m $1 $2 && git branch -u origin/$2 $2\"
+	checkout-default = !sh -c \"git checkout $(git remote-default-branch origin)\"
 [push]
 	default = simple
 	followtags = true
