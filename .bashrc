@@ -38,7 +38,7 @@ vcsh_update() {
 
     for repo in $(vcsh list); do
         # If we have no upstream, don't bother
-        vcsh $repo rev-parse --verify --quiet '@{u}' &>/dev/null || continue
+        test -n "$(vcsh $repo remote)" || continue
 
         # Fetch at most once per hour
         if [ $(stat -c %Y "$(vcsh $repo rev-parse --git-dir)"/FETCH_HEAD) -lt $(( $(date +%s) - 3600 )) ]; then
@@ -46,11 +46,26 @@ vcsh_update() {
 
             # Don't fetch via ssh unless we have an agent
             case "$url,$SSH_AUTH_SOCK" in
-                http*) timeout 5 vcsh $repo fetch || echo "Unable to update dotfiles" >&2 ;;
-                *,)    ;;
-                *)     timeout 5 vcsh $repo fetch || echo "Unable to update dotfiles" >&2 ;;
+                http*)
+                    timeout 5 vcsh $repo fetch || echo "Unable to update dotfiles" >&2
+                    timeout 1 vcsh $repo remote set-head -a origin &>/dev/null
+                    ;;
+                *,)
+                    ;;
+                *)
+                    timeout 5 vcsh $repo fetch || echo "Unable to update dotfiles" >&2
+                    timeout 1 vcsh $repo remote set-head -a origin &>/dev/null
+                    ;;
             esac
+        fi
 
+        # Checkout the main branch if we're strictly behind
+        remoteb=$(vcsh dotfiles rev-parse --symbolic-full-name --abbrev-ref origin/HEAD)
+        localb=$(vcsh dotfiles rev-parse --symbolic-full-name --abbrev-ref HEAD)
+        if [ $remoteb != origin/$localb ]; then
+            if [ $(vcsh $repo rev-list --count $remoteb..) == 0 ]; then
+                vcsh dotfiles checkout ${remoteb/origin\/}
+            fi
         fi
 
         # Merge if it's a fast-forward
