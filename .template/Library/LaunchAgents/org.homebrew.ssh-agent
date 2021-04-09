@@ -1,0 +1,20 @@
+#!/bin/bash
+
+test -e ~/Library/LaunchAgents || exit 0
+
+mode=0444
+content='<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>org.homebrew.ssh-agent</string>
+	<key>ProgramArguments</key>
+	<array>
+        <string>/usr/local/bin/ssh-agent</string>
+        <string>-D</string>
+        <string>-a</string>
+	<string>'$HOME'/.ssh/agent.sock</string>
+	</array>
+</dict>
+</plist>'
