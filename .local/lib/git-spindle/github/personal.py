@@ -43,6 +43,9 @@ query MyPullRequests
       nodes {
         number
         title
+        headRef {
+            name
+        }
         mergeable
         url
         reviewDecision
@@ -91,7 +94,7 @@ query MyPullRequests
         for pr in prs:
             if pr.repository.owner.login != 'github':
                 continue
-            ident = "%s/%d" % (pr.repository.name, pr.number)
+            ident = "%s/%s" % (pr.repository.name, pr.headRef.name)
             mrl = mrl if len(ident) < mrl else len(ident)
             msl = msl if len(pr.title) < msl else len(pr.title)
         if prs:
@@ -99,7 +102,7 @@ query MyPullRequests
         for pr in prs:
             if pr.repository.owner.login != 'github':
                 continue
-            ident = "%s/%d" % (pr.repository.name, pr.number)
+            ident = "%s/%s" % (pr.repository.name, pr.headRef.name)
             status = self.mergeable_map.get(pr.mergeable, self.confusion)
             status += self.review_map.get(pr.reviewDecision, self.confusion)
             suites = [suite for suite in pr.commits[0].commit.checkSuites if suite.checkRuns]
