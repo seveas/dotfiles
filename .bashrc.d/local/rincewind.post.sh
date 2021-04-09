@@ -1,4 +1,4 @@
-export PATH=$PATH:~/kafka_2.13-2.6.0/bin
+export PATH=$PATH:~/code/kafka/bin
 vpn() {
     osascript -e "tell application \"Viscosity\" to connect \"${1:-github-iad-prod}\""
 }
