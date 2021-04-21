@@ -116,14 +116,14 @@ query MyPullRequests
 
     @command
     def wait_for_ci(self, opts):
-        """[<branch>]
+        """[<branch>] [--wait-for-all]
            Wait for ci to complete on a branch"""
         opts['--wait'] = True
         self.ci_status(opts)
 
     @command
     def ci_status(self, opts):
-        """[<branch>] [--wait]
+        """[<branch>] [--wait] [--wait-for-all]
            Show the status of all check runs on the branch"""
         lines = 0
         branch = opts['<branch>']
@@ -141,6 +141,8 @@ query MyPullRequests
         commit = repo.commit(branch)
         failing = False
         pending = False
+        if opts['--wait-for-all']:
+            opts['--wait'] = True
         
         while True:
             runs = list(commit.check_runs())
@@ -155,7 +157,7 @@ query MyPullRequests
             runs.sort(key=lambda run: run.name)
             mnl = max([len(run.name) for run in runs] + [0])
             for run in runs:
-                relevant = not run.name.startswith(('puppet-integration-ops-default','puppet-integration-base-image'))
+                relevant = opts['--wait-for-all'] or not run.name.startswith(('puppet-integration-ops-default','puppet-integration-base-image'))
                 ts = '     '
                 symbol = '  '
                 if run.name in required:
