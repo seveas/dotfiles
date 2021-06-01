@@ -188,7 +188,7 @@ query MyPullRequests
                 text = "%s %s %-*s %s" % (symbol, ts, mnl, run.name, run.details_url)
                 if not relevant:
                     text = fx.faint(text)
-                print(text)
+                print('\033[2K' + text)
 
             lines = len(runs)+1
             if not (pending and opts['--wait']):
