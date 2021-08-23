@@ -11,3 +11,6 @@ alias rot13='tr A-Za-z N-ZA-Mn-za-m'
 
 # I want a functional, non-littering, sed -i
 export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+
+# Docker idiocy
+export DOCKER_SCAN_SUGGEST=false

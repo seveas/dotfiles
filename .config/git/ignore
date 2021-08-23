@@ -62,6 +62,7 @@
 .project
 .svn
 .tox
+Brewfile.lock.json
 Build
 TODO
 \#*
