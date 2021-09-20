@@ -144,6 +144,7 @@ query MyPullRequests
         if opts['--wait-for-all']:
             opts['--wait'] = True
         
+        waited = False
         while True:
             runs = list(commit.check_runs())
             now = datetime.datetime.now().astimezone(datetime.timezone.utc)
@@ -193,9 +194,10 @@ query MyPullRequests
             lines = len(runs)+1
             if not (pending and opts['--wait']):
                 break
+            waited = True
             time.sleep(5)
 
-        if opts['--wait']:
+        if opts['--wait'] and waited:
             print(ansi.iterm.notification("CI runs done for %s/%s" % (repo.name, branch)))
 
         if failing:
