@@ -14,3 +14,10 @@ export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
 
 # Docker idiocy
 export DOCKER_SCAN_SUGGEST=false
+
+# Iterm config
+mkdir -p ~/.config/iterm
+if defaults domains | grep -q com.googlecode.iterm2; then
+    defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.config/iterm"
+    defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+fi
