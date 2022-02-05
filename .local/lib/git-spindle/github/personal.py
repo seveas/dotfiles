@@ -116,16 +116,17 @@ query MyPullRequests
 
     @command
     def wait_for_ci(self, opts):
-        """[<branch>] [--wait-for-all]
+        """[<branch>] [--wait-for-all] [--ignore=checks]
            Wait for ci to complete on a branch"""
         opts['--wait'] = True
         self.ci_status(opts)
 
     @command
     def ci_status(self, opts):
-        """[<branch>] [--wait] [--wait-for-all]
+        """[<branch>] [--wait] [--wait-for-all] [--ignore=checks]
            Show the status of all check runs on the branch"""
         lines = 0
+        ignore = tuple([x for x in (opts['--ignore'] or '').split(',') if x])
         branch = opts['<branch>']
         if not branch:
             branch = self.git('rev-parse', 'HEAD').stdout.strip()
@@ -158,7 +159,7 @@ query MyPullRequests
             runs.sort(key=lambda run: run.name)
             mnl = max([len(run.name) for run in runs] + [0])
             for run in runs:
-                relevant = opts['--wait-for-all'] or not run.name.startswith(('puppet-integration-ops-default','puppet-integration-base-image'))
+                relevant = opts['--wait-for-all'] or not run.name.startswith(('puppet-integration-ops-default','puppet-integration-base-image')+ignore)
                 ts = '     '
                 symbol = '  '
                 if run.name in required:
