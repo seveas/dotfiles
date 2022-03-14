@@ -1,5 +1,18 @@
 export PATH=$PATH:~/code/kafka/bin
 vpn() {
+    (
+        cd ~/Library/Application\ Support/Viscosity/OpenVPN/
+        for f in */pkcs.p12; do
+            if ! PASS= openssl pkcs12 -in $f -nokeys -clcerts -passin env:PASS | openssl x509 -checkend $((86400*7)); then
+                echo "Must update the vpn certs for $f - $(grep remote $f)"
+                slack-send observability-chatops .vpn revoke &
+                slack-tail observability-chatops --until 'Operation complete'
+                make -C ~/github/vpn
+                break
+            fi
+        done
+    )
+
     osascript -e "tell application \"Viscosity\" to connect \"${1:-github-iad-prod}\""
     open -g "h"ttps://fido-challenger.githubapp.com/auth/vpn-prod
 }
