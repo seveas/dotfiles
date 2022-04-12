@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Delete date-time based tags that don't exist on origin
-
-comm -13 \
-    <(git ls-remote --tags origin | grep -v '\^{}$' | awk --posix '/-[0-9]{8}-[0-9]{6}/{ gsub(/^refs.tags./, "", $2); print $2 }' | sort) \
-    <(git tag | sort) | \
-xargs git tag -d
