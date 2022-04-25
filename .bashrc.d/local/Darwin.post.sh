@@ -10,8 +10,15 @@ alias rot13='tr A-Za-z N-ZA-Mn-za-m'
 # I want a functional, non-littering, sed -i
 export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
 
+# And we need postgres
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
 # Docker idiocy
 export DOCKER_SCAN_SUGGEST=false
+
+# Brew2deb annoyance
+export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_NO_ANALYTICS=1
 
 # Iterm config
 mkdir -p ~/.config/iterm
