@@ -14,13 +14,13 @@ __git_update() {
 
 cd() {
     command cd "$@" || return $?
-    __cd
+    __cd || return 0
 }
 pushd() {
     command pushd "$@" || return $?
-    __cd
+    __cd || return 0
 }
 popd() {
     command popd "$@" || return $?
-    __cd
+    __cd || return 0
 }

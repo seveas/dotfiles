@@ -73,8 +73,6 @@ set statusline=%.50F\ %{fugitive#statusline()}\ %([%M%R%H]%)%=[%l,%v/%L]
 noremap <leader>y "*y
 noremap <leader>p "*p
 
-call pathogen#infect() 
-
 :vnoremap . :normal .<CR>
 
 au BufNewFile,BufRead *.git/worktrees/*/COMMIT_EDITMSG  setf gitcommit
