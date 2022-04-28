@@ -10,6 +10,7 @@ update_vim_git_plugins() {(
         echo "$plugin $(git -C $plugin remote get-url origin) $(git -C $plugin rev-parse HEAD)" >> .shas-new
     done
     mv .shas-new .shas
+    vim -c :GoUpdateBinaries -c :q
 )}
 
 checkout_vim_git_plugins() {
@@ -20,4 +21,7 @@ checkout_vim_git_plugins() {
         fi
         git -C "$plugin" reset -q --hard "$sha"
     done < .shas
+    vim -c :GoUpdateBinaries -c :q
 }
+
+test -e ~/.vim/pack/git-plugins/start || checkout_vim_git_plugins
