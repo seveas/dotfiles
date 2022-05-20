@@ -13,7 +13,7 @@ update_vim_git_plugins() {(
     vim -c :GoUpdateBinaries -c :q
 )}
 
-checkout_vim_git_plugins() {
+checkout_vim_git_plugins() {(
     cd ~/.vim/pack/git-plugins/start
     while read -r plugin repo sha; do
         if [ ! -e "$plugin" ]; then
@@ -22,6 +22,6 @@ checkout_vim_git_plugins() {
         git -C "$plugin" reset -q --hard "$sha"
     done < .shas
     vim -c :GoUpdateBinaries -c :q
-}
+)}
 
 test -e ~/.vim/pack/git-plugins/start || checkout_vim_git_plugins

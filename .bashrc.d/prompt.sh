@@ -101,6 +101,7 @@ esac
 
 __prompt() {
     pipestatus=("${PIPESTATUS[@]}")
+    hostname=${CODESPACE_NAME:-$HOSTNAME}
     if [ ${#pipestatus[@]} -ne 1 ]; then
         FAIL=
         do_fail=n
@@ -143,11 +144,11 @@ __prompt() {
     H='~'
     case "$TERM" in
     xterm*|rxvt*)
-        echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/$HOME/$H}\007"
+        echo -ne "\033]0;${USER}@${hostname%%.*}: ${PWD/$HOME/$H}\007"
         __vte_osc7
         ;;
     esac
-    PS1="$FAIL$VCSH$USERX${HOSTNAME%%.*}:${PWD/$HOME/$H}"
+    PS1="$FAIL$VCSH$USERX${hostname%%.*}:${PWD/$HOME/$H}"
     if [ "$PS1_GIT" == 1 ]; then
         __git_ps1 "$PS1" "$PROMPT"
     else
