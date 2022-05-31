@@ -4,6 +4,8 @@
 <dict>
 	<key>AdjustWindowForFontSizeChange</key>
 	<false/>
+	<key>CopySelection</key>
+	<false/>
 	<key>Default Bookmark Guid</key>
 	<string>47AAACAD-E1B2-4775-98A8-0B3ED7DB6A99</string>
 	<key>DimInactiveSplitPanes</key>
@@ -343,6 +345,8 @@
 			<string>Default</string>
 			<key>Disable Window Resizing</key>
 			<true/>
+			<key>Enable Triggers in Interactive Apps</key>
+			<false/>
 			<key>Flashing Bell</key>
 			<false/>
 			<key>Foreground Color</key>
@@ -748,7 +752,7 @@
 					<key>parameter</key>
 					<string>open -g \0</string>
 					<key>regex</key>
-					<string>[h]ttps://fido-challenger.githubapp.com/[^ ]+</string>
+					<string> *[h]ttps://fido-challenger.githubapp.com/[^ ]+</string>
 				</dict>
 			</array>
 			<key>Unlimited Scrollback</key>
@@ -811,7 +815,7 @@
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>Snippets</key>
