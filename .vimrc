@@ -58,6 +58,7 @@ set makeprg=make
 set wildmode=longest,list
 set autoread
 set scrolloff=5
+set nofileignorecase
 " Make Y behave like C or D
 map Y y$
 let mapleader = ","
