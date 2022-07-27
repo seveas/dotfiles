@@ -18,7 +18,6 @@
 	reword = commit --amend --only
 	nudge = !git pull --rebase && git push
 	summary = rev-list -n1 --date=short --pretty='tformat:%h ("%s", %ad)'
-	upush = !git push -u origin $(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 	yolo = !git commit -a --amend --no-edit && git push -f && sleep 5 && gh pr checks --watch
 	yolo-deploy = !sh -c \"git commit -a --amend --no-edit && git push -f && sleep 5 && .deploy $@\"
 	yolo-rebase = !git commit -a --amend --no-edit && git fetch && git rebase origin/$(git remote-default-branch origin) && git push -f && sleep 1 && gh pr checks --watch
@@ -30,6 +29,7 @@
 [push]
 	default = simple
 	followtags = true
+	autosetupremote = true
 [fetch]
 	prune = true
 [log]
