@@ -20,6 +20,9 @@ export DOCKER_SCAN_SUGGEST=false
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 
+# Make it easy to inspect the docker vm
+alias nsenter1='docker run -it --rm --privileged --pid=host justincormack/nsenter1'
+
 # Iterm config
 mkdir -p ~/.config/iterm
 if defaults domains | grep -q com.googlecode.iterm2; then
