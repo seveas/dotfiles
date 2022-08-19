@@ -3,7 +3,7 @@ vpn() {
     (
         cd ~/Library/Application\ Support/Viscosity/OpenVPN/
         for f in */pkcs.p12; do
-            if ! PASS= openssl pkcs12 -in $f -nokeys -clcerts -passin env:PASS | openssl x509 -checkend $((86400*7)); then
+            if ! PASS= openssl pkcs12 -in $f -nokeys -clcerts -passin env:PASS 2>&1 | openssl x509 -checkend $((86400*7)) >/dev/null; then
                 echo "Must update the vpn certs for $f - $(grep remote $f)"
                 slack-send observability-chatops .vpn revoke &
                 slack-tail observability-chatops --until 'Operation complete'
