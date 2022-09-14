@@ -3,11 +3,7 @@
 not_with_sudo
 
 # Make sure the path for controlfiles exists
-if [ -e ~/.ssh/control ] && [ ! -e ~/.shc ]; then
-    mv ~/.ssh/control ~/.shc
-else
-    mkdir -p -m700 ~/.shc
-fi
+mkdir -p -m700 ~/.ssh/control
 
 # Steal SSH agent unless this one works
 if ! $(ssh-add -l >/dev/null 2>&1); then

@@ -101,7 +101,7 @@ esac
 
 __prompt() {
     pipestatus=("${PIPESTATUS[@]}")
-    hostname=${CODESPACE_NAME:-$HOSTNAME}
+    hostname=${CODESPACE_ALIAS:-$HOSTNAME}
     if [ ${#pipestatus[@]} -ne 1 ]; then
         FAIL=
         do_fail=n
