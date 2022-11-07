@@ -27,6 +27,7 @@
 	rename-branch = !sh -c \"git branch -m $1 $2 && git branch -u origin/$2 $2\"
 	checkout-default = !sh -c \"git checkout $(git remote-default-branch origin)\"
 	cdiff = diff --word-diff --word-diff-regex=.
+	delete-merged = !git branch --merged $(git remote-default-branch origin) | xargs git branch -d
 [push]
 	default = simple
 	followtags = true
