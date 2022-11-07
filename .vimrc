@@ -107,3 +107,7 @@ set autowrite
 let g:go_list_height = 0
 let g:go_template_autocreate = 0
 highlight SpellBad ctermbg=1
+
+if isdirectory("/usr/local/opt/node@16")
+    let g:copilot_node_command  = "/usr/local/opt/node@16/bin/node"
+endif

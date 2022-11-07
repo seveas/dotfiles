@@ -32,6 +32,7 @@ tap "homebrew/cask"
     'moreutils',
     'mosh',
     'nmap',
+    'node@16',
     'protobuf',
     'pstree',
     'python',
