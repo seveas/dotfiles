@@ -4,12 +4,16 @@
 <dict>
 	<key>AdjustWindowForFontSizeChange</key>
 	<false/>
+	<key>AlwaysWarnBeforePastingOverSize</key>
+	<integer>256</integer>
 	<key>CopySelection</key>
 	<false/>
 	<key>Default Bookmark Guid</key>
 	<string>47AAACAD-E1B2-4775-98A8-0B3ED7DB6A99</string>
 	<key>DimInactiveSplitPanes</key>
 	<false/>
+	<key>DisallowCopyEmptyString</key>
+	<true/>
 	<key>EnableDivisionView</key>
 	<false/>
 	<key>GlobalKeyMap</key>
