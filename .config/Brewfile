@@ -27,6 +27,7 @@ tap "homebrew/cask"
     'jless',
     'jq',
     'kubernetes-cli',
+    'lima',
     'lua',
     'luarocks',
     'moreutils',
