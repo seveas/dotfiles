@@ -57,6 +57,7 @@
 .coverage
 .envrc
 .gdb_history
+.goproxytoken
 .hg
 .ipynb_checkpoints
 .project
