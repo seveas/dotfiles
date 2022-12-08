@@ -4,4 +4,5 @@ vim-antlr ssh://git@github.com/dylon/vim-antlr.git 8cac54ffe2ae38a844c3b7adc7480
 vim-fugitive ssh://git@github.com/tpope/vim-fugitive.git 5b0b138483de17a8fd8dfcec0b491782c8fbf102
 vim-go ssh://git@github.com/fatih/vim-go.git 8d7677947e0be1eecfa1bcf2c1148804963ec4f6
 vim-puppet ssh://git@github.com/rodjek/vim-puppet.git 81943d532dee24f8518f855dfb17160809abfdfb
+vim-sleuth ssh://git@github.com/tpope/vim-sleuth.git 8332f123a63c739c870c96907d987cc3ff719d24
 vim-terraform ssh://git@github.com/hashivim/vim-terraform.git f0b17ac9f1bbdf3a29dba8b17ab429b1eed5d443
