@@ -12,6 +12,7 @@ tap "homebrew/cask"
     'colima',
     'coreutils',
     'cowsay',
+    'diffutils',
     'direnv',
     'docker',
     'docker-compose',
