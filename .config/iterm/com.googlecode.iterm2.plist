@@ -756,7 +756,7 @@
 					<key>parameter</key>
 					<string>open -g \0</string>
 					<key>regex</key>
-					<string> *[h]ttps://fido-challenger.githubapp.com/[^ ]+</string>
+					<string>[h]ttps://fido-challenger.githubapp.com/[^ ]+</string>
 				</dict>
 			</array>
 			<key>Unlimited Scrollback</key>
