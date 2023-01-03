@@ -25,6 +25,17 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0x53-0x120000-0x1</key>
+		<dict>
+			<key>Action</key>
+			<integer>28</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>47AAACAD-E1B2-4775-98A8-0B3ED7DB6A99</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
 		<key>0x73-0x100000-0x1</key>
 		<dict>
 			<key>Action</key>
