@@ -69,7 +69,7 @@ nnoremap <leader>nm :set mouse=
 " Reindent
 nnoremap <leader>i gg=G
 autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg"
-set statusline=%.50F\ %{fugitive#statusline()}\ %([%M%R%H]%)%=[%l,%v/%L]
+set statusline=%F\ %{fugitive#statusline()}\ %([%M%R%H]%)%=[%l,%v/%L]
 
 noremap <leader>y "*y
 noremap <leader>p "*p
