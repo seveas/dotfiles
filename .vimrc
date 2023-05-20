@@ -111,3 +111,5 @@ highlight SpellBad ctermbg=1
 if isdirectory("/usr/local/opt/node@16")
     let g:copilot_node_command  = "/usr/local/opt/node@16/bin/node"
 endif
+
+let g:ale_ruby_rubocop_executable = "/no/thanks"
