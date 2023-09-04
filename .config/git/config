@@ -71,3 +71,5 @@
 	defaultBranch = main
 [includeif "gitdir:~/github/"]
 	path = ~/.config/git/github
+[advice]
+	diverging = false
