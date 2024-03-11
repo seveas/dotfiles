@@ -21,13 +21,15 @@
 	yolo = !git commit -a --amend --no-edit && git push -f && sleep 5 && gh pr checks --watch
 	yolo-deploy = !sh -c \"git commit -a --amend --no-edit && git push -f && sleep 5 && .deploy $@\"
 	yolo-rebase = !git commit -a --amend --no-edit && git fetch && git rebase origin/$(git remote-default-branch origin) && git push -f && sleep 1 && gh pr checks --watch
-	new-branch = !sh -c \"git fetch --all && git checkout --no-track -b $1 origin/$(git remote-default-branch origin)\"
+	new-branch = !sh -c \"git fetch --all && git checkout --no-track -b $1 origin/${2:-$(git remote-default-branch origin)}\"
 	remote-default-branch = !sh -c \"git ls-remote --symref $1  HEAD | awk '/^ref/{print \\$2}' | sed -e 's!refs/heads/!!'\"
 	rebase-main = !sh -c \"git fetch && git rebase origin/$(git remote-default-branch origin)\"
 	rename-branch = !sh -c \"git branch -m $1 $2 && git branch -u origin/$2 $2\"
 	checkout-default = !sh -c \"git checkout $(git remote-default-branch origin)\"
 	cdiff = diff --word-diff --word-diff-regex=.
 	delete-merged = !git branch --merged $(git remote-default-branch origin) | xargs git branch -d
+	mb = !sh -c \"git merge-base $(git remote-default-branch origin) HEAD\"
+	diff-mb = !sh -c \"git diff $(git mb)\"
 [push]
 	default = simple
 	followtags = true
@@ -73,3 +75,4 @@
 	path = ~/.config/git/github
 [advice]
 	diverging = false
+	skippedCherryPicks = false
