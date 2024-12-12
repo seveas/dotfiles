@@ -10,3 +10,6 @@ pager: !!null cat
 aliases:
     co: pr checkout
 version: "1"
+extensions:
+    slack:
+        team: github
