@@ -24,8 +24,7 @@ export HOMEBREW_NO_ANALYTICS=1
 alias nsenter1='docker run -it --rm --privileged --pid=host justincormack/nsenter1'
 
 # Iterm config
-mkdir -p ~/.config/iterm
-if defaults domains | grep -q com.googlecode.iterm2; then
+if [ -e /Applications/iTerm.app ] && [ ! -e ~/.config/iterm/com.googlecode.iterm2.plist ]; then
     defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.config/iterm"
     defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 fi
