@@ -1,3 +1,1 @@
-(ssh-add -l || /usr/bin/ssh-add -K )&>/dev/null
-. /usr/local/etc/bash_completion
-printf() { if [ $1 = "-v" ]; then command printf "$@"; else gprintf "$@"; fi; }
+(ssh-add -l || /usr/bin/ssh-add -K ) >/dev/null 2>&1

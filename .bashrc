@@ -5,7 +5,9 @@
 shopt -s checkwinsize no_empty_cmd_completion histappend extglob globstar
 
 # More sanity: gnu tools instead of some broken/missing bsd ones on osx
-if [ -e /usr/local/bin/gmv ]; then
+test -e /opt/homebrew/bin && export PATH=/opt/homebrew/bin:$PATH
+if which gmv >/dev/null 2>&1; then
+    alias sed=gsed
     alias find=gfind
     alias stat=gstat
     alias mv=gmv
