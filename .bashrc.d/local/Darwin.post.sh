@@ -24,3 +24,5 @@ if [ -e /Applications/iTerm.app ] && [ ! -e ~/.config/iterm/com.googlecode.iterm
 fi
 
 printf() { if [ "$1" = "-v" ]; then command printf "$@"; else gprintf "$@"; fi; }
+
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
