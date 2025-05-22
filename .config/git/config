@@ -56,7 +56,7 @@
 	process = git-lfs filter-process
 	required = true
 [branch]
-	sort = -authordate
+	sort = -committerdate
 [checkout]
 	defaultRemote = origin
 [fetch "fsck"]
@@ -64,6 +64,9 @@
 	zeroPaddedFilemode = ignore
 [diff]
 	noprefix = true
+	renames = true
+	colorMoved = plain
+	algorithm = histogram
 [protocol]
 	version = 2
 [url "ssh://git@github.com/"]
@@ -77,3 +80,10 @@
 [advice]
 	diverging = false
 	skippedCherryPicks = false
+[column]
+	ui = auto
+[tag]
+	sort = version:refname
+[rerere]
+	enabled = true
+	autoupdate = true
