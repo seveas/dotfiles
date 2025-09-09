@@ -1,8 +1,8 @@
-ale ssh://git@github.com/dense-analysis/ale.git 80ff84db84ba172bfcdee5e2748924bb2249134b
-copilot.vim ssh://git@github.com/github/copilot.vim d1e8429bef7f7709586886b0a23a46fbecc685c4
+ale ssh://git@github.com/dense-analysis/ale.git 4217461c4859c4fac31ce3d2e22574218f244cf5
+copilot.vim ssh://git@github.com/github/copilot.vim c2c435419e081a87e909e8979c66d874e75e4155
 vim-antlr ssh://git@github.com/dylon/vim-antlr.git 8cac54ffe2ae38a844c3b7adc7480a8e856d1aba
-vim-fugitive ssh://git@github.com/tpope/vim-fugitive.git 4a745ea72fa93bb15dd077109afbb3d1809383f2
-vim-go ssh://git@github.com/fatih/vim-go.git 2a6b7c56194501a9190238dd31eb9952f0dbe517
+vim-fugitive ssh://git@github.com/tpope/vim-fugitive.git 61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4
+vim-go ssh://git@github.com/fatih/vim-go.git 06ac99359b0b1a7de1e213447d92fd0a46cb4cd0
 vim-puppet ssh://git@github.com/rodjek/vim-puppet.git 10bf0b27c5be81ee26c3a0d32e39b270f95329ce
 vim-sleuth ssh://git@github.com/tpope/vim-sleuth.git be69bff86754b1aa5adcbb527d7fcd1635a84080
-vim-terraform ssh://git@github.com/hashivim/vim-terraform.git 8912ca1be3025a1c9fab193618f3b99517e01973
+vim-terraform ssh://git@github.com/hashivim/vim-terraform.git 520498fab16a3a11f2ae1b8cb65e0a1684bc317a
