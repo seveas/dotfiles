@@ -1,5 +1,5 @@
-for dir in / /usr/local /opt/homebrew; do
-  if [ -f $dir/etc/bash_completion ]; then
-    . $dir/etc/bash_completion
+for file in /etc/bash_completion /usr/local/etc/bash_completion /opt/homebrew/etc/bash_completion /opt/homebrew/etc/profile.d/bash_completion.sh; do
+  if [ -f $file ]; then
+    . $file
   fi
 done
