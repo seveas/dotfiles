@@ -113,3 +113,6 @@ if isdirectory("/usr/local/opt/node@16")
 endif
 
 let g:ale_ruby_rubocop_executable = "/no/thanks"
+
+" For older codespaces
+let g:go_version_warning = 0
